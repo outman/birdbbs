@@ -8,6 +8,7 @@ $version = "?20140114";
     <meta charset="utf-8">
     <title> <?php echo CHtml::encode($this->pageTitle); ?> </title>
     <link rel="stylesheet" href="<?php echo $staticUrl; ?>/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?php echo $staticUrl; ?>/public/css/style.css" />
     <script type="text/javascript" src="<?php echo $staticUrl; ?>/public/js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo $staticUrl; ?>/public/js/bootstrap.min.js"></script>
 </head>
