@@ -1,4 +1,4 @@
-<?php echo "<?php\n"; ?>
+<?php
 
 class DefaultController extends BackendController
 {
