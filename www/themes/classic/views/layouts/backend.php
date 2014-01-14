@@ -13,7 +13,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<?php echo Yii::app()->createUrl("admin/default/index") ?>">Dashboard</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl("admin/user/admin") ?>">用户</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl("admin/user/admin") ?>">用户管理</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl("admin/post/admin") ?>">帖子管理</a></li>
             </ul>
         </div>
     </div>
