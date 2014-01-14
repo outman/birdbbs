@@ -1,4 +1,4 @@
-<?php $this->beginContent('//layouts/layout'); ?>
+<?php $this->beginContent('//layouts/admin'); ?>
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -13,6 +13,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<?php echo Yii::app()->createUrl("admin/default/index") ?>">Dashboard</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl("admin/user/admin") ?>">用户</a></li>
             </ul>
         </div>
     </div>

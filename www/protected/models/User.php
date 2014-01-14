@@ -20,6 +20,9 @@
  */
 class User extends CActiveRecord
 {
+    const STATUS_NORMAL = 1;
+    const STATUS_FROZEN = 2;
+
     /**
      * @return string the associated database table name
      */
@@ -28,13 +31,33 @@ class User extends CActiveRecord
         return '{{user}}';
     }
 
+    public function statusList() {
+        return array(
+            self::STATUS_NORMAL => '正常',
+            self::STATUS_FROZEN => '冻结',
+        );
+    }
+
+    public function displayStatus($status = null) {
+
+        if (null === $status) {
+            $status = $this->status;
+        }
+        $list = $this->statusList();
+        
+        if (isset($list[$status])) {
+            return $list[$status];
+        }
+
+        return $status;
+    }
+
+
     /**
      * @return array validation rules for model attributes.
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
             array('username, password, email', 'required'),
             array('status', 'numerical', 'integerOnly'=>true),
@@ -45,9 +68,7 @@ class User extends CActiveRecord
             array('intro', 'length', 'max'=>256),
             array('createTime', 'length', 'max'=>10),
             array('lastIp', 'length', 'max'=>64),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('id, username, password, email, siteUrl, qq, location, flag, intro, status, avatar, createTime, lastIp', 'safe', 'on'=>'search'),
+            array('id, username, email', 'safe', 'on'=>'search'),
         );
     }
 
@@ -56,8 +77,6 @@ class User extends CActiveRecord
      */
     public function relations()
     {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
         return array(
         );
     }
@@ -68,19 +87,19 @@ class User extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id' => 'ID',
-            'username' => 'Username',
-            'password' => 'Password',
-            'email' => 'Email',
-            'siteUrl' => 'Site Url',
-            'qq' => 'Qq',
-            'location' => 'Location',
-            'flag' => 'Flag',
-            'intro' => 'Intro',
-            'status' => 'Status',
-            'avatar' => 'Avatar',
-            'createTime' => 'Create Time',
-            'lastIp' => 'Last Ip',
+            'id' => '#',
+            'username' => '用户名',
+            'password' => '密码',
+            'email' => '邮箱',
+            'siteUrl' => '个人站点',
+            'qq' => 'QQ',
+            'location' => '所在地',
+            'flag' => '签名',
+            'intro' => '简介',
+            'status' => '状态',
+            'avatar' => '头像',
+            'createTime' => '创建日期',
+            'lastIp' => '登录IP',
         );
     }
 
@@ -98,26 +117,18 @@ class User extends CActiveRecord
      */
     public function search()
     {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
         $criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('siteUrl',$this->siteUrl,true);
-		$criteria->compare('qq',$this->qq,true);
-		$criteria->compare('location',$this->location,true);
-		$criteria->compare('flag',$this->flag,true);
-		$criteria->compare('intro',$this->intro,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('avatar',$this->avatar,true);
-		$criteria->compare('createTime',$this->createTime,true);
-		$criteria->compare('lastIp',$this->lastIp,true);
+        $criteria->compare('id',$this->id);
+        $criteria->compare('username',$this->username);
+        $criteria->compare('email',$this->email);
+        $criteria->order = "id desc";
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
+            'pagination' => array(
+                'pageSize' => 20,
+            ),
         ));
     }
 
@@ -130,5 +141,15 @@ class User extends CActiveRecord
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function beforeSave()
+    {
+        if ($this->getIsNewRecord()) {
+            $this->createTime = time();
+            $this->status = self::STATUS_NORMAL;
+        }
+
+        return parent::beforeSave();
     }
 }

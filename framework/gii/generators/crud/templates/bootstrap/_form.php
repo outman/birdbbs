@@ -26,7 +26,8 @@ foreach($this->tableSchema->columns as $column)
 ?>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-6">
-        <?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? '添加' : '修改', array('class'=>'btn btn-primary')); ?>\n"; ?>
+            <?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? '添加' : '修改', array('class'=>'btn btn-primary')); ?>\n"; ?>
+            <a class="btn btn-default" href="<?php echo '<?php echo $this->createUrl("admin"); ?>'; ?>">返回列表</a>
         </div>
     </div>
 

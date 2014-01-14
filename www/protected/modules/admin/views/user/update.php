@@ -1,16 +1,13 @@
 <div class="row">
-    <div class="col-md-2">
-        <ul class="nav nav-list">
-            <li><a href="<?php echo $this->createUrl("admin"); ?>">管理</a></li>
-            <li><a href="<?php echo $this->createUrl("create"); ?>">添加</a></li>
-        </ul>
-    </div>
-    <div class="col-md-10">
+    <div class="col-md-12">
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Library</a></li>
-                <li class="active">Data</li>
+                <li><a href="<?php echo $this->createUrl("default/index") ?>">Dashboard</a></li>
+                <li><a href="<?php echo $this->createUrl("user/admin"); ?>">用户管理</a></li>
+                <li class="active">更新用户</li>
+                <li class="pull-right">
+                    <a class="btn btn-xs btn-primary" href="<?php echo $this->createUrl("admin") ?>">返回列表</a>
+                </li>
             </ol>
         </div>
         <div class="row">
