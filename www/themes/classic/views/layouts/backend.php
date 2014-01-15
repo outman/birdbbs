@@ -15,6 +15,7 @@
                 <li class="active"><a href="<?php echo Yii::app()->createUrl("admin/default/index") ?>">Dashboard</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl("admin/user/admin") ?>">用户管理</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl("admin/post/admin") ?>">帖子管理</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl("admin/comment/admin") ?>">评论管理</a></li>
             </ul>
         </div>
     </div>
