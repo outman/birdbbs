@@ -43,7 +43,7 @@ $page = $dataProvider->getPagination();
             <tr>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("id"); ?></th>
                 <th><?php echo $model->getAttributeLabel("username"); ?></th>
-                <th style="width: 240px;"><?php echo $model->getAttributeLabel("email"); ?></th>
+                <th style="width: 300px;"><?php echo $model->getAttributeLabel("email"); ?></th>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("status"); ?></th>
                 <th style="width: 100px;"><?php echo $model->getAttributeLabel("createTime"); ?></th>
                 <th style="width: 160px;"><?php echo $model->getAttributeLabel("lastIp"); ?></th>

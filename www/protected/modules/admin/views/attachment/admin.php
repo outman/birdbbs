@@ -8,12 +8,12 @@ $page = $dataProvider->getPagination();
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="<?php echo $this->createUrl("default/index"); ?>">Dashboard</a></li>
-                <li><a href="<?php echo $this->createUrl("admin") ?>">帖子管理</a></li>
-                <li class="active">帖子列表</li>
+                <li><a href="<?php echo $this->createUrl("admin") ?>">文件管理</a></li>
+                <li class="active">文件列表</li>
             </ol>
         </div>
         <div class="row">
-          <?php $form = $this->beginWidget("CActiveForm", array(
+        <?php $form = $this->beginWidget("CActiveForm", array(
                 'id' => 'search-form',
                 'htmlOptions' => array(
                     'class' => 'form-inline well',
@@ -26,35 +26,31 @@ $page = $dataProvider->getPagination();
                 <?php echo $form->textField($model, 'id', array('class'=>'form-control', 'placeholder'=>'id')); ?>
             </div>
             <div class="col-xs-2">
-                <?php echo $form->textField($model, 'userId',array('class'=>'form-control', 'placeholder'=>'用户ID')); ?>
+                <?php echo $form->textField($model, 'name',array('class'=>'form-control', 'placeholder'=>'名称')); ?>
             </div>
             <input type="submit" class="btn btn-primary" value="搜索">
             </div>
-            <?php $this->endWidget(); ?>
-      </div>
+        <?php $this->endWidget(); ?>
+        </div>
         <div class="row">
             <table class="table table-bordered table-condensed">
             <tr>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("id"); ?></th>
-                <th style="width: 180px;"><?php echo $model->getAttributeLabel("userId"); ?></th>
-                <th><?php echo $model->getAttributeLabel("title"); ?></th>
-                <th style="width: 140px;"><?php echo $model->getAttributeLabel("nodeId"); ?></th>
-                <th style="width: 80px;"><?php echo $model->getAttributeLabel("status"); ?></th>
-                <th style="width: 80px;"><?php echo $model->getAttributeLabel("createTime"); ?></th>
+                <th><?php echo $model->getAttributeLabel("name"); ?></th>
+                <th style="width: 160px;"><?php echo $model->getAttributeLabel("size"); ?></th>
+                <th style="width: 300px;"><?php echo $model->getAttributeLabel("mime"); ?></th>
                 <th style="width: 60px;"></th>
-            </tr>
+                </tr>
             <?php  if ($data): ?>
             <?php  foreach ($data as $v): ?>
             <tr>
                 <td><?php echo CHtml::encode($v->id); ?></td>
-                <td><?php echo CHtml::encode($v->userId); ?></td>
-                <td><?php echo CHtml::encode($v->title); ?></td>
-                <td><?php echo CHtml::encode($v->nodeId); ?></td>
-                <td><?php echo CHtml::encode($v->status); ?></td>
-                <td><?php echo CHtml::encode($v->createTime); ?></td>
+                <td><?php echo CHtml::encode($v->name); ?></td>
+                <td><?php echo CHtml::encode($v->size); ?></td>
+                <td><?php echo CHtml::encode($v->mime); ?></td>
                 <td style="text-align: center;">
                     <div class="btn-group">
-                        <a class="btn btn-xs btn-danger" href="<?php echo $this->createUrl("post/delete", array("id"=>$v->id)) ?>">删除</a>
+                        <a class="btn btn-xs btn-danger" href="<?php echo $this->createUrl("attachment/delete", array("id"=>$v->id)) ?>">删除</a>
                     </div>
                 </td>
             </tr>

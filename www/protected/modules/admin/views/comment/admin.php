@@ -26,7 +26,7 @@ $page = $dataProvider->getPagination();
                 <?php echo $form->textField($model, 'id', array('class'=>'form-control', 'placeholder'=>'id')); ?>
             </div>
             <div class="col-xs-2">
-                <?php echo $form->textField($model, 'userId',array('class'=>'form-control', 'placeholder'=>'用户')); ?>
+                <?php echo $form->textField($model, 'userId',array('class'=>'form-control', 'placeholder'=>'用户ID')); ?>
             </div>
             <input type="submit" class="btn btn-primary" value="搜索">
             </div>

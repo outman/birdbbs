@@ -1,24 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "{{comment}}".
+ * This is the model class for table "{{attachment}}".
  *
- * The followings are the available columns in table '{{comment}}':
+ * The followings are the available columns in table '{{attachment}}':
  * @property string $id
- * @property string $postId
- * @property string $userId
- * @property string $content
+ * @property string $path
+ * @property string $url
+ * @property string $name
+ * @property string $mime
+ * @property string $size
+ * @property string $table
+ * @property string $parentId
  * @property string $createTime
- * @property string $updateTime
  */
-class Comment extends CActiveRecord
+class Attachment extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return '{{comment}}';
+        return '{{attachment}}';
     }
 
     /**
@@ -29,11 +32,14 @@ class Comment extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('postId, userId, content', 'required'),
-            array('postId, userId, createTime, updateTime', 'length', 'max'=>10),
+            array('path, url, name, mime, size', 'required'),
+            array('path, url, name', 'length', 'max'=>256),
+            array('mime', 'length', 'max'=>128),
+            array('size, parentId, createTime', 'length', 'max'=>10),
+            array('table', 'length', 'max'=>64),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, postId, userId, content, createTime, updateTime', 'safe', 'on'=>'search'),
+            array('id, path, url, name, mime, size, table, parentId, createTime', 'safe', 'on'=>'search'),
         );
     }
 
@@ -42,9 +48,9 @@ class Comment extends CActiveRecord
      */
     public function relations()
     {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
         return array(
-            'user' => array(self::BELONGS_TO, 'User', 'userId'),
-            'post' => array(self::BELONGS_TO, 'Post', 'postId'),
         );
     }
 
@@ -55,11 +61,14 @@ class Comment extends CActiveRecord
     {
         return array(
             'id' => '#',
-            'postId' => '帖子',
-            'userId' => '用户',
-            'content' => '内容',
+            'path' => '路径',
+            'url' => 'URL',
+            'name' => '名称',
+            'mime' => 'MIME',
+            'size' => '大小',
+            'table' => '数据表',
+            'parentId' => '主键',
             'createTime' => '创建日期',
-            'updateTime' => '修改日期',
         );
     }
 
@@ -77,11 +86,13 @@ class Comment extends CActiveRecord
      */
     public function search()
     {
+        // @todo Please modify the following code to remove attributes that should not be searched.
+
         $criteria=new CDbCriteria;
 
         $criteria->compare('id',$this->id);
-        $criteria->compare('postId',$this->postId);
-        $criteria->compare('userId',$this->userId);
+        $criteria->compare('name',$this->name);
+        $criteria->compare('mime',$this->mime);
         $criteria->order = "id desc";
 
         return new CActiveDataProvider($this, array(
@@ -93,7 +104,7 @@ class Comment extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Comment the static model class
+     * @return Attachment the static model class
      */
     public static function model($className=__CLASS__)
     {
