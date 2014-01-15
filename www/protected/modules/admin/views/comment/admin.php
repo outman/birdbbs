@@ -47,7 +47,7 @@ $page = $dataProvider->getPagination();
                 <td><?php echo CHtml::encode($v->id); ?></td>
                 <td><?php echo CHtml::encode(isset($v->user->username)?$v->user->username:$v->userId); ?></td>
                 <td><?php echo CHtml::encode(isset($v->post->title)?$v->post->title:$v->postId); ?></td>
-                <td><?php echo CHtml::encode(Util::timeElapsedStr($v->createTime)); ?></td>
+                <td><?php echo CHtml::encode($v->createTime?Util::timeElapsedStr($v->createTime):"-"); ?></td>
                 <td style="text-align: center;">
                     <div class="btn-group">
                         <a class="btn btn-xs btn-danger" href="<?php echo $this->createUrl("comment/delete", array("id"=>$v->id)) ?>">删除</a>
