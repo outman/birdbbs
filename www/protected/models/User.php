@@ -18,7 +18,7 @@
  * @property string $createTime
  * @property string $lastIp
  */
-class User extends CActiveRecord
+class User extends Model
 {
     const STATUS_NORMAL = 1;
     const STATUS_FROZEN = 2;

@@ -11,7 +11,7 @@
  * @property string $content
  * @property string $createTime
  */
-class Log extends CActiveRecord
+class Log extends Model
 {
     const TYPE_BACKEND = 1;
     const TYPE_FRONT = 2;

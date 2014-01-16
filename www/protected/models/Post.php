@@ -17,7 +17,7 @@
  * @property string $createTime
  * @property string $updateTime
  */
-class Post extends CActiveRecord
+class Post extends Model
 {
     const STATUS_NORMAL = 1;
     const STATUS_FROZEN = 2;

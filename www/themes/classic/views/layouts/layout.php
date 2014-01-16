@@ -14,5 +14,9 @@ $version = "?20140114";
 </head>
 <body>
 <?php echo $content; ?>
+<div class="container" style="text-align: center;">
+    <hr>
+    <p>&copy; <?php echo date("Y"), '. <a href="http://buxiangshuo.cn">不想说网</a> ', Yii::powered(); ?></p>
+</div>
 </body>
 </html>

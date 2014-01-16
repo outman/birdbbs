@@ -1,24 +1,59 @@
 <?php
 
 /**
- * This is the model class for table "{{comment}}".
+ * This is the model class for table "{{node}}".
  *
- * The followings are the available columns in table '{{comment}}':
+ * The followings are the available columns in table '{{node}}':
  * @property string $id
- * @property string $postId
- * @property string $userId
- * @property string $content
+ * @property string $name
+ * @property integer $status
+ * @property string $sort
  * @property string $createTime
- * @property string $updateTime
+ * @property string $description
  */
-class Comment extends Model
+class Node extends Model
 {
+    const STATUS_NORMAL = 1;
+    const STATUS_CLOSE = 2;
+
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return '{{comment}}';
+        return '{{node}}';
+    }
+
+    /**
+     * [statusList description]
+     * @return [type] [description]
+     */
+    public function statusList()
+    {
+        return array(
+            self::STATUS_NORMAL => '正常',
+            self::STATUS_CLOSE => '关闭',
+        );
+    }
+
+    /**
+     * [displayStatus description]
+     * @param  [type] $status [description]
+     * @return [type]         [description]
+     */
+    public function displayStatus($status = null)
+    {
+        if (null === $status) {
+            $status = $this->status;
+        }
+
+        $list = $this->statusList();
+
+        if (isset($list[$status])) {
+            return $list[$status];
+        }
+
+        return $status;
     }
 
     /**
@@ -29,11 +64,14 @@ class Comment extends Model
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('postId, userId, content', 'required'),
-            array('postId, userId, createTime, updateTime', 'length', 'max'=>10),
+            array('name', 'required'),
+            array('status', 'numerical', 'integerOnly'=>true),
+            array('name', 'length', 'max'=>64),
+            array('sort, createTime', 'length', 'max'=>10),
+            array('description', 'length', 'max'=>256),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, postId, userId, content, createTime, updateTime', 'safe', 'on'=>'search'),
+            array('id, name, status, sort, createTime, description', 'safe', 'on'=>'search'),
         );
     }
 
@@ -43,8 +81,6 @@ class Comment extends Model
     public function relations()
     {
         return array(
-            'user' => array(self::BELONGS_TO, 'User', 'userId'),
-            'post' => array(self::BELONGS_TO, 'Post', 'postId'),
         );
     }
 
@@ -55,11 +91,11 @@ class Comment extends Model
     {
         return array(
             'id' => '#',
-            'postId' => '帖子',
-            'userId' => '用户',
-            'content' => '内容',
+            'name' => '名称',
+            'status' => '状态',
+            'sort' => '排序',
             'createTime' => '创建日期',
-            'updateTime' => '修改日期',
+            'description' => '描述',
         );
     }
 
@@ -77,12 +113,16 @@ class Comment extends Model
      */
     public function search()
     {
+        // @todo Please modify the following code to remove attributes that should not be searched.
+
         $criteria=new CDbCriteria;
 
-        $criteria->compare('id',$this->id);
-        $criteria->compare('postId',$this->postId);
-        $criteria->compare('userId',$this->userId);
-        $criteria->order = "id desc";
+        $criteria->compare('id',$this->id,true);
+        $criteria->compare('name',$this->name,true);
+        $criteria->compare('status',$this->status);
+        $criteria->compare('sort',$this->sort,true);
+        $criteria->compare('createTime',$this->createTime,true);
+        $criteria->compare('description',$this->description,true);
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
@@ -93,7 +133,7 @@ class Comment extends Model
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Comment the static model class
+     * @return Node the static model class
      */
     public static function model($className=__CLASS__)
     {

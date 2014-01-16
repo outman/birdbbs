@@ -1,7 +1,7 @@
 <?php
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name'=>'BirdBBS',
+    'name'=>'不想说',
     'theme' => 'classic',
     'language' => 'zh_cn',
     'preload'=>array('log'),

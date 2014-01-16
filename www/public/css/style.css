@@ -2,4 +2,14 @@ body {
     font-family: 'Microsoft Yahei', 'Helvetica Neue', 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti;
     background: #e2e2e2;
     padding-top: 64px;
+    min-height: 768px;
+}
+div.login-btn {
+    text-align: center;
+}
+div.home-user {
+    color: #000;
+}
+div.home-user a {
+    color: #000;
 }
