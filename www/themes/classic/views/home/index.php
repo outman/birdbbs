@@ -1,73 +1,78 @@
+<?php 
+$dataProvider = $model->search();
+$data = $dataProvider->getData();
+$page = $dataProvider->getPagination();
+?>
 <div class="row">
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">
+            <a class="label label-primary" href="<?php echo $this->createUrl("home/index"); ?>">全部</a>
             <?php if ($nodes) foreach ($nodes as $v): ?>
-            <a href="<?php echo $this->createUrl("home/node", array("id"=>$v->id)) ?>" class="label label-default"><?php echo CHtml::encode($v->name); ?></a>
+            <a href="<?php echo $this->createUrl("home/index", array("Post[nodeId]"=>$v->id)) ?>" class="label label-primary"><?php echo CHtml::encode($v->name); ?></a>
             <?php endforeach; ?>
             </div>
             <div class="panel-body">
-            Panel content
+                <?php if ($data): ?>
+                <?php foreach ($data as $v): ?>
+                <div class="row">
+                    <div class="col-md-1">
+                        <a href="<?php echo $this->createUrl("home/user", array("id"=>$v->userId)); ?>">
+                        <?php if (isset($v->user->email)): ?>
+                            <img src="<?php echo Util::gavatar($v->user->email);?>" alt="<?php echo CHtml::encode($v->user->username); ?>">
+                        <?php else: ?>
+                            <div class="avatar"></div>
+                        <?php endif; ?>
+                        </a>
+                    </div>
+                    <div class="col-md-10">
+                        <a href="<?php echo $this->createUrl("home/view", array("id" => $v->id)); ?>"><h4><?php echo CHtml::encode($v->title); ?></h4></a>
+                        <?php if (isset($v->node->name)): ?>
+                        <span><a href="<?php echo $this->createUrl("home/index", array("Post[nodeId]"=>$v->nodeId)); ?>" class="label label-primary"><?php echo CHtml::encode($v->node->name); ?></a></span>
+                        <?php endif; ?>
+                        <?php if (isset($v->user->username)): ?>
+                        <span class="light">•</span>
+                        <span><a href="<?php echo $this->createUrl("home/user", array("id"=>$v->userId)); ?>"><?php echo CHtml::encode($v->user->username); ?></a></span>
+                        <?php endif; ?>
+
+                        <span class="light">•</span>
+                        <span class="light"><?php echo Util::timeElapsedStr($v->createTime); ?></span>
+
+                        <?php if (isset($v->by->username)): ?>
+                        <span class="light">•</span>
+                        <span class="light">最后回复来自</span>
+                        <span><a class="light" href="<?php echo $this->createUrl("home/user", array("id"=>$v->lastUpdateUserId)); ?>"><?php echo CHtml::encode($v->by->username); ?></a></span>
+                        <?php endif; ?>
+                        <span class="light"><?php echo $v->hits; ?>次浏览</span>
+                    </div>
+                    <div class="col-md-1">
+                        <span class="badge"><?php echo $v->reply; ?></span>
+                    </div>
+                </div>
+                <div class="dashed"></div>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <div class="alert alert-warning">
+                    <span>暂时没有话题.</span>
+                </div>
+                <?php endif; ?>
+                <?php $this->widget('CLinkPager', Util::page($page)); ?>
             </div>
         </div>
     </div>
     <div class="col-md-3">
-        <?php //if (!Yii::app()->user->isGuest): ?>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>不想说</p>
-                <span>什么都不想说，就当我没来过.</span>
-                <hr>
-                <div class="login-btn">
-                    <div class="btn-group">
-                        <a href="<?php echo $this->createUrl("home/login"); ?>" class="btn btn-primary">登录</a>
-                        <a href="<?php echo $this->createUrl("home/register"); ?>" class="btn btn-primary">注册</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php //else: ?>
+        <?php if (Yii::app()->user->isGuest): ?>
+        <?php $this->widget("SideLoginWidget"); ?>
+        <?php else: ?>
         <div class="panel panel-default">
             <div class="panel-body">
                 <a href="<?php echo $this->createUrl("home/post") ?>" class="btn btn-block btn-primary">发表话题</a>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a href="<?php echo $this->createUrl("home/user") ?>"><h5><?php echo Yii::app()->user->name; ?></h5></a>
-            </div>
-            <div class="panel-body">
-                <span>发帖：<a href="">1000</a></span><br>
-                <span>回帖：<a href="">353</a></span>
-            </div>
-        </div>
-        <?php //endif; ?>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <span>热门节点</span>
-            </div>
-            <div class="panel-body">
-                <span>发帖：<a href="">1000</a></span><br>
-                <span>回帖：<a href="">353</a></span>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <span>社区动态</span>
-            </div>
-            <div class="panel-body">
-                <span>发帖：<a href="">1000</a></span><br>
-                <span>回帖：<a href="">353</a></span>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <span>友情链接</span>
-            </div>
-            <div class="panel-body">
-                <span><a href="">1000</a></span>
-                <span><a href="">353</a></span>
-            </div>
-        </div>
+        <?php $this->widget("SideUserWidget"); ?>
+        <?php endif; ?>
+        <?php $this->widget("SideHotPostWidget"); ?>
+        <?php $this->widget("SideSiteWidget"); ?>
+        <?php $this->widget("SideOutlinkWidget"); ?>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends BackendController
+class OutlinkController extends BackendController
 {
     public $defaultAction = "admin";
 
@@ -21,21 +21,16 @@ class UserController extends BackendController
      */
     public function actionCreate()
     {
-        $model=new User;
+        $model=new Outlink;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if(isset($_POST['User']))
+        if(isset($_POST['Outlink']))
         {
-            $model->attributes=$_POST['User'];
-            if($model->validate())
-            {
-                $model->password = CPasswordHelper::hashPassword($model->password);
-                if ($model->save())
-                    $this->redirect(array('view','id'=>$model->id));
-            }
-                
+            $model->attributes=$_POST['Outlink'];
+            if($model->save())
+                $this->redirect(array('view','id'=>$model->id));
         }
 
         $this->render('create',array(
@@ -55,9 +50,9 @@ class UserController extends BackendController
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if(isset($_POST['User']))
+        if(isset($_POST['Outlink']))
         {
-            $model->attributes=$_POST['User'];
+            $model->attributes=$_POST['Outlink'];
             if($model->save())
                 $this->redirect(array('view','id'=>$model->id));
         }
@@ -81,16 +76,15 @@ class UserController extends BackendController
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 
-
     /**
      * Manages all models.
      */
     public function actionAdmin()
     {
-        $model=new User('search');
+        $model=new Outlink('search');
         $model->unsetAttributes();  // clear any default values
-        if(isset($_GET['User']))
-            $model->attributes=$_GET['User'];
+        if(isset($_GET['Outlink']))
+            $model->attributes=$_GET['Outlink'];
 
         $this->render('admin',array(
             'model'=>$model,
@@ -101,12 +95,12 @@ class UserController extends BackendController
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return User the loaded model
+     * @return Outlink the loaded model
      * @throws CHttpException
      */
     public function loadModel($id)
     {
-        $model=User::model()->findByPk($id);
+        $model=Outlink::model()->findByPk($id);
         if($model===null)
             throw new CHttpException(404,'该记录不存在.');
         return $model;
@@ -114,11 +108,11 @@ class UserController extends BackendController
 
     /**
      * Performs the AJAX validation.
-     * @param User $model the model to be validated
+     * @param Outlink $model the model to be validated
      */
     protected function performAjaxValidation($model)
     {
-        if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+        if(isset($_POST['ajax']) && $_POST['ajax']==='outlink-form')
         {
             echo CActiveForm::validate($model);
             Yii::app()->end();

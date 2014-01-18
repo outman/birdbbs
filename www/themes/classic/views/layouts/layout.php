@@ -11,6 +11,9 @@ $version = "?20140114";
     <link rel="stylesheet" href="<?php echo $staticUrl; ?>/public/css/style.css" />
     <script type="text/javascript" src="<?php echo $staticUrl; ?>/public/js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo $staticUrl; ?>/public/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    var siteUrl = <?php echo json_encode(Yii::app()->request->hostInfo); ?>;
+    </script>
 </head>
 <body>
 <?php echo $content; ?>

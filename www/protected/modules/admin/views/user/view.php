@@ -19,10 +19,6 @@
                 <td><?php echo CHtml::encode($model->username); ?></td>
             </tr>
             <tr>
-                <th><?php echo $model->getAttributeLabel("password"); ?></th>
-                <td><?php echo CHtml::encode($model->password); ?></td>
-            </tr>
-            <tr>
                 <th><?php echo $model->getAttributeLabel("email"); ?></th>
                 <td><?php echo CHtml::encode($model->email); ?></td>
             </tr>

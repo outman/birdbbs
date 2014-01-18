@@ -13,12 +13,14 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<?php echo Yii::app()->createUrl("home/index") ?>">首页</a></li>
+                <?php $this->widget('NodeNavWidget'); ?>
             </ul>
-            <?php if (Yii::app()->user->isGuest): ?>
+            <?php if (!Yii::app()->user->isGuest): ?>
             <ul class="nav navbar-nav pull-right">
                 <li class="active"><a href="<?php echo Yii::app()->createUrl("home/logout") ?>">退出</a></li>
             </ul>
             <?php endif; ?>
+
             <!-- <form class="navbar-form" role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">

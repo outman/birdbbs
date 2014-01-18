@@ -1,15 +1,26 @@
 body {
-    font-family: 'Microsoft Yahei', 'Helvetica Neue', 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti;
-    background: #e2e2e2;
-    padding-top: 64px;
-    min-height: 768px;
+    background: #e2e2e2; padding-top: 64px; min-height: 768px;
 }
+
 div.login-btn {
     text-align: center;
 }
-div.home-user {
-    color: #000;
+
+a.light, span.light {
+    color: #ccc;
+    font-size: 12px;
 }
-div.home-user a {
-    color: #000;
+.breadcrumb {
+    background: #fff;
+}
+.panel-default>.panel-heading {
+    background: #fff;
+}
+div.dashed {
+    height: 16px;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 10px;
+}
+div.avatar {
+    height: 48px; width: 48px;background: #999;
 }

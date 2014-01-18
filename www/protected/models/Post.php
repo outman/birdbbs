@@ -56,16 +56,12 @@ class Post extends Model
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
             array('userId, title, nodeId, content', 'required'),
             array('status', 'numerical', 'integerOnly'=>true),
             array('userId, nodeId, reply, sort, hits, lastUpdateUserId, createTime, updateTime', 'length', 'max'=>10),
             array('title', 'length', 'max'=>256),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('id, userId', 'safe', 'on'=>'search'),
+            array('id, userId, nodeId', 'safe', 'on'=>'search'),
         );
     }
 
@@ -75,6 +71,10 @@ class Post extends Model
     public function relations()
     {
         return array(
+            'node' => array(self::BELONGS_TO, 'Node', "nodeId"),
+            'user' => array(self::BELONGS_TO, 'User', 'userId'),
+            'by' => array(self::BELONGS_TO, 'User', 'lastUpdateUserId'),
+            'comments' => array(self::HAS_MANY, 'Comment', "postId"),
         );
     }
 
@@ -114,11 +114,15 @@ class Post extends Model
     public function search()
     {
         $criteria=new CDbCriteria;
+        $criteria->select = "id, title, userId, nodeId, reply, sort, hits, lastUpdateUserId, updateTime, createTime, status";
         $criteria->compare('id',$this->id);
         $criteria->compare('userId',$this->userId);
-
+        $criteria->compare('nodeId',$this->nodeId);
+        $criteria->compare('status', $this->status);
+        
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
+            'sort' => array('defaultOrder' => 'id desc'),
             'pagination' => array('pageSize' => 20,)
         ));
     }

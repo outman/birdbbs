@@ -56,5 +56,8 @@ $page = $dataProvider->getPagination();
             <?php endif; ?>
             </table>
         </div>
+        <div class="row">
+            <?php $this->widget('CLinkPager', Util::page($page)); ?>
+        </div>
     </div>
 </div>

@@ -10,6 +10,7 @@ return array(
     'import'=>array(
         'application.models.*',
         'application.components.*',
+        'application.components.widget.*',
     ),
 
     'modules'=>array(
@@ -26,11 +27,12 @@ return array(
         'user'=>array(
             // enable cookie-based authentication
             'allowAutoLogin'=>true,
+            'loginUrl' => array('home/login'),
         ),
         'urlManager'=>array(
             'urlFormat'=>'path',
             'rules'=>array(
-                '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                // '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ),

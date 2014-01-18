@@ -2,6 +2,11 @@
 
 class Util {
 
+    /**
+     * [timeElapsedStr description]
+     * @param  [type] $ptime [description]
+     * @return [type]        [description]
+     */
     public static function timeElapsedStr($ptime) {
 
         $etime = time() - $ptime;
@@ -26,5 +31,93 @@ class Util {
                 return $r . ' ' . $str . '前';
             }
         }
+    }
+
+    /**
+     * [timeToStr description]
+     * @param  [type] $timeStamp [description]
+     * @param  [type] $startTime [description]
+     * @return [type]            [description]
+     */
+    public static function timeToStr($timeStamp, $startTime = null)
+    {
+        if (empty($timeStamp)) {
+            return 0;
+        }
+
+        if (null === $startTime) {
+            $timeSeconds = $timeStamp;
+        }
+        else {
+            $timeSeconds = $timeStamp  - $startTime;
+        }
+
+        $timeArray = array(
+            24*3600*365 => "年",
+            24*3600 => "天",
+            3600 => "小时",
+            60 => "分",
+        );
+
+        $str = "";
+        foreach ($timeArray as $k => $v) {
+            $val = floor($timeSeconds / $k);
+            if ($val > 0) {
+                $str .= $val . $v;
+                $timeSeconds = $timeSeconds % $k;
+            }
+        }
+        return $str;
+    }
+
+    /**
+     * [page description]
+     * @param  [type] $pages [description]
+     * @return [type]        [description]
+     */
+    public static function page($pages)
+    {
+        return array(
+            'header'               => '',
+            'firstPageLabel'       => '<<',
+            'lastPageLabel'        => '>>',
+            'firstPageCssClass'    => '',
+            'lastPageCssClass'     => '',
+            'maxButtonCount'       => 8,
+            'nextPageCssClass'     => '',
+            'previousPageCssClass' => '',
+            'prevPageLabel'        => '<',
+            'nextPageLabel'        => '>',
+            'selectedPageCssClass' => 'active',
+            'pages'                => $pages,
+            'internalPageCssClass' => '',
+            'hiddenPageCssClass'   => 'disabled',
+            'cssFile'              => false,
+            'htmlOptions'          => array(
+                'class'            => 'pagination'
+            ),
+        );
+    }
+
+    public static function tformat($timeStamp, $format = "Y-m-d H:i")
+    {
+        if ($timeStamp > 0) {
+            return date($format, $timeStamp);
+        }
+        return "-";
+    }
+
+    public static function gavatar($email, $s = 48, $d = 'mm', $r = 'g', $img = false, $attr = array())
+    {
+        $url = 'http://www.gravatar.com/avatar/';
+        $url .= md5(strtolower(trim($email)));
+        $url .= "?s={$s}&d={$d}&r={$r}";
+        if ($img) {
+            $url = '<img src="' . $url . '"';
+            foreach ( $atts as $key => $val )
+                $url .= ' ' . $key . '="' . $val . '"';
+            $url .= ' />';
+        }
+        return $url;
     }
 }

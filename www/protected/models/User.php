@@ -60,6 +60,8 @@ class User extends Model
     {
         return array(
             array('username, password, email', 'required'),
+            array('email', 'email'),
+            array('username, email', 'unique'),
             array('status', 'numerical', 'integerOnly'=>true),
             array('username, location', 'length', 'max'=>32),
             array('password, email, flag', 'length', 'max'=>128),
@@ -122,10 +124,10 @@ class User extends Model
         $criteria->compare('id',$this->id);
         $criteria->compare('username',$this->username);
         $criteria->compare('email',$this->email);
-        $criteria->order = "id desc";
-
+        
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
+            'sort' => array('defaultOrder' => 'id desc'),
             'pagination' => array(
                 'pageSize' => 20,
             ),

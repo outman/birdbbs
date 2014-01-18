@@ -19,6 +19,7 @@
                 <li<?php if ($id == "comment"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/comment/admin") ?>">评论管理</a></li>
                 <li<?php if ($id == "node"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/node/admin") ?>">节点管理</a></li>
                 <li<?php if ($id == "attachment"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/attachment/admin") ?>">文件管理</a></li>
+                <li<?php if ($id == "outlink"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/outlink/admin") ?>">友情链接</a></li>
                 <li<?php if ($id == "admin"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/admin/admin") ?>">管理员</a></li>
             </ul>
         </div>

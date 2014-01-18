@@ -1,24 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "{{comment}}".
+ * This is the model class for table "{{outlink}}".
  *
- * The followings are the available columns in table '{{comment}}':
+ * The followings are the available columns in table '{{outlink}}':
  * @property string $id
- * @property string $postId
- * @property string $userId
- * @property string $content
+ * @property string $name
+ * @property string $url
+ * @property string $description
+ * @property string $sort
  * @property string $createTime
- * @property string $updateTime
  */
-class Comment extends Model
+class Outlink extends Model
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return '{{comment}}';
+        return '{{outlink}}';
     }
 
     /**
@@ -26,10 +26,15 @@ class Comment extends Model
      */
     public function rules()
     {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
         return array(
-            array('postId, userId, content', 'required'),
-            array('postId, userId, createTime, updateTime', 'length', 'max'=>10),
-            array('id, postId, userId, content, createTime, updateTime', 'safe', 'on'=>'search'),
+            array('name, url', 'required'),
+            array('name', 'length', 'max'=>64),
+            array('url', 'length', 'max'=>512),
+            array('description', 'length', 'max'=>256),
+            array('sort, createTime', 'length', 'max'=>10),
+            array('id, name, url, description, sort, createTime', 'safe', 'on'=>'search'),
         );
     }
 
@@ -38,9 +43,9 @@ class Comment extends Model
      */
     public function relations()
     {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
         return array(
-            'user' => array(self::BELONGS_TO, 'User', 'userId'),
-            'post' => array(self::BELONGS_TO, 'Post', 'postId'),
         );
     }
 
@@ -51,11 +56,11 @@ class Comment extends Model
     {
         return array(
             'id' => '#',
-            'postId' => '帖子',
-            'userId' => '用户',
-            'content' => '内容',
+            'name' => '站点名称',
+            'url' => '链接',
+            'description' => '描述',
+            'sort' => '排序',
             'createTime' => '创建日期',
-            'updateTime' => '修改日期',
         );
     }
 
@@ -74,14 +79,13 @@ class Comment extends Model
     public function search()
     {
         $criteria=new CDbCriteria;
-
-        $criteria->compare('id',$this->id);
-        $criteria->compare('postId',$this->postId);
-        $criteria->compare('userId',$this->userId);
+        $criteria->compare("id", $this->id);
+        $criteria->compare("name", $this->name);
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
-            'sort' => array('defaultOrder' => 'id desc'),
+            'sort' => array('defaultOrder'=>'sort desc'),
+            'pagination' => array('pageSize' => 15)
         ));
     }
 
@@ -89,7 +93,7 @@ class Comment extends Model
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Comment the static model class
+     * @return Outlink the static model class
      */
     public static function model($className=__CLASS__)
     {

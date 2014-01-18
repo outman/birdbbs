@@ -28,8 +28,13 @@ class AdminController extends BackendController
         if(isset($_POST['Admin']))
         {
             $model->attributes=$_POST['Admin'];
-            if($model->save())
-                $this->redirect(array('view','id'=>$model->id));
+            if($model->validate()) {
+
+                $model->password = CPasswordHelper::hashPassword($model->password);
+                if ($model->save()) 
+                    $this->redirect(array('view','id'=>$model->id));
+            }
+                
         }
 
         $this->render('create',array(
