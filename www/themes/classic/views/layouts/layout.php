@@ -6,7 +6,7 @@ $version = "?20140114";
 <html lang="zh_CN">
 <head>
     <meta charset="utf-8">
-    <title> <?php echo CHtml::encode($this->pageTitle); ?> </title>
+    <title> <?php echo CHtml::encode(Yii::app()->name . ' - ' . $this->pageTitle); ?> </title>
     <link rel="stylesheet" href="<?php echo $staticUrl; ?>/public/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo $staticUrl; ?>/public/css/style.css" />
     <script type="text/javascript" src="<?php echo $staticUrl; ?>/public/js/jquery.min.js"></script>

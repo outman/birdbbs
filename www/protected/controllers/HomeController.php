@@ -38,6 +38,8 @@ class HomeController extends FrontController
      */
     public function actionPost()
     {
+        $this->pageTitle = "发布帖子";
+        
         $model = new Post;
 
         if (isset($_POST['Post'])) {
@@ -66,6 +68,8 @@ class HomeController extends FrontController
      */
     public function actionIndex()
     {
+        $this->pageTitle = "首页";
+
         $nodes = Node::model()->findAllByAttributes(array(
             "status" => Node::STATUS_NORMAL,
         ));
@@ -91,6 +95,7 @@ class HomeController extends FrontController
      */
     public function actionLogin()
     {
+        $this->pageTitle = '登录';
         $this->layout = "//layouts/default";
 
         $model = new LoginForm;
@@ -113,6 +118,7 @@ class HomeController extends FrontController
      */
     public function actionRegister()
     {
+        $this->pageTitle = '注册';
         $this->layout = "//layouts/default";
 
         $model = new User;
@@ -138,7 +144,7 @@ class HomeController extends FrontController
      * @return [type]     [description]
      */
     public function actionView($id) {
-
+        
         $userId = (int) Yii::app()->user->id;
         $post = Post::model()->findByPk($id);
         if (empty($post)) {
@@ -159,6 +165,8 @@ class HomeController extends FrontController
 
         $post->hits += 1;
         $post->save();
+
+        $this->pageTitle = $post->title;
 
         $this->render("view", array(
             "model" => $post,
@@ -182,6 +190,7 @@ class HomeController extends FrontController
      */
     public function actionUser()
     {   
+        $this->pageTitle = '我发的帖子';
         $userId = (int) Yii::app()->user->id;
         $model = new Post('search');
         $model->unsetAttributes();
@@ -203,6 +212,7 @@ class HomeController extends FrontController
      */
     public function actionComment()
     {
+        $this->pageTitle = '我参与回复的帖子';
         $userId = (int) Yii::app()->user->id;
         $model = new Comment('search');
         $model->unsetAttributes();
