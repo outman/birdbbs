@@ -17,15 +17,12 @@
             </ul>
             <?php if (!Yii::app()->user->isGuest): ?>
             <ul class="nav navbar-nav pull-right">
-                <li class="active"><a href="<?php echo Yii::app()->createUrl("home/logout") ?>">退出</a></li>
+                <li class="active">
+                    <a href="<?php echo Yii::app()->createUrl("home/center"); ?>"><?php echo CHtml::encode(Yii::app()->user->name); ?></a>
+                </li>
+                <li><a href="<?php echo Yii::app()->createUrl("home/logout") ?>">退出</a></li>
             </ul>
             <?php endif; ?>
-
-            <!-- <form class="navbar-form" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-            </form> -->
         </div>
     </div>
 </div>

@@ -33,7 +33,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <article>
-                            <?php echo $model->content; ?>
+                        <?php $this->beginWidget('CMarkdown', array(
+                                'purifyOutput' => true,
+                                'cssFile' => false,
+                            ));?>
+                        <?php echo $model->content; ?>    
+                        <?php $this->endWidget(); ?>
                         </article>
                     </div>
                 </div>
@@ -105,7 +110,19 @@
 
     </div>
     <div class="col-md-3">
-        
+    <?php if (Yii::app()->user->isGuest): ?>
+    <?php $this->widget("SideLoginWidget"); ?>
+    <?php else: ?>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a href="<?php echo $this->createUrl("home/post") ?>" class="btn btn-block btn-primary">发表话题</a>
+        </div>
+    </div>
+    <?php $this->widget("SideUserWidget"); ?>
+    <?php endif; ?>
+    <?php $this->widget("SideHotPostWidget"); ?>
+    <?php $this->widget("SideSiteWidget"); ?>
+    <?php $this->widget("SideOutlinkWidget"); ?>
     </div>
 </div>
 <script type="text/javascript">

@@ -41,6 +41,21 @@
             </div>
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>发帖说明</span>
+            </div>
+            <div class="panel-body">
+                <ul style="padding-left: 16px;">
+                <li>请明确填写标题</li>
+                <li>请选择正确的节点</li>
+                <li>发帖内容支持Markdown格式</li>
+                </ul>
+            </div>
+        </div>
+        <?php $this->widget("SideHotPostWidget"); ?>
+    </div>
 </div>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/markdown/js/epiceditor.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/js/editor.js"></script>
