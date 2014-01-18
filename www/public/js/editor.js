@@ -1,6 +1,7 @@
 var editor;
 KindEditor.ready(function(K) {
     editor = K.create('#Post_content', {
+        formatUploadUrl: false,
         themeType: "simple",
         filePostName: 'upload',
         uploadJson: IMAGE_UPLOAD_URL,

@@ -2,6 +2,26 @@
 
 class UploadController extends FrontController {
 
+    public function filters()
+    {
+        return array('accessControl');
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array(
+                'deny',
+                'actions' => array('index'),
+                'users' => array('?'),
+            ),
+        );
+    }
+
+    /**
+     * [$allowType description]
+     * @var array
+     */
     private $allowType = array(
         'image/png' ,
         'image/jpeg',
@@ -9,6 +29,10 @@ class UploadController extends FrontController {
         'image/jpg',
     );
 
+    /**
+     * [actionIndex description]
+     * @return [type] [description]
+     */
     public function actionIndex()
     {
         $ret = array(

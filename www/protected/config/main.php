@@ -45,6 +45,10 @@ return array(
             'password' => 'admin',
             'charset' => 'utf8',
             'tablePrefix' => 'bbs_',
+            'schemaCachingDuration' => 3600,
+        ),
+        'cache' => array(
+            'class' => 'system.caching.CFileCache',
         ),
         'errorHandler'=>array(
             'errorAction'=>'error/index',
