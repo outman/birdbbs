@@ -17,7 +17,7 @@ $page = $dataProvider->getPagination();
                 <?php foreach ($data as $v): ?>
                 <div class="row">
                     <div class="col-md-1">
-                        <a href="<?php echo $this->createUrl("home/user", array("id"=>$v->userId)); ?>">
+                        <a href="<?php echo $this->createUrl("home/index", array("Post[userId]"=>$v->userId)); ?>">
                         <?php if (isset($v->user->email)): ?>
                             <img src="<?php echo Util::gavatar($v->user->email);?>" alt="<?php echo CHtml::encode($v->user->username); ?>">
                         <?php else: ?>
@@ -32,7 +32,7 @@ $page = $dataProvider->getPagination();
                         <?php endif; ?>
                         <?php if (isset($v->user->username)): ?>
                         <span class="light">•</span>
-                        <span><a href="<?php echo $this->createUrl("home/user", array("id"=>$v->userId)); ?>"><?php echo CHtml::encode($v->user->username); ?></a></span>
+                        <span><a href="<?php echo $this->createUrl("home/index", array("Post[userId]"=>$v->userId)); ?>"><?php echo CHtml::encode($v->user->username); ?></a></span>
                         <?php endif; ?>
 
                         <span class="light">•</span>
@@ -41,7 +41,7 @@ $page = $dataProvider->getPagination();
                         <?php if (isset($v->by->username)): ?>
                         <span class="light">•</span>
                         <span class="light">最后回复来自</span>
-                        <span><a class="light" href="<?php echo $this->createUrl("home/user", array("id"=>$v->lastUpdateUserId)); ?>"><?php echo CHtml::encode($v->by->username); ?></a></span>
+                        <span><a class="light" href="<?php echo $this->createUrl("home/index", array("Post[userId]"=>$v->lastUpdateUserId)); ?>"><?php echo CHtml::encode($v->by->username); ?></a></span>
                         <?php endif; ?>
                         <span class="light"><?php echo $v->hits; ?>次浏览</span>
                     </div>

@@ -2,17 +2,25 @@
 
 class HomeController extends FrontController
 {
+    /**
+     * [filters description]
+     * @return [type] [description]
+     */
     public function filters()
     {
         return array('accessControl');
     }
 
+    /**
+     * [accessRules description]
+     * @return [type] [description]
+     */
     public function accessRules()
     {
         return array(
             array(
                 'deny',
-                'actions' => array('post'),
+                'actions' => array('post', 'user'),
                 'users' => array('?'),
             ),
             array(
@@ -124,11 +132,6 @@ class HomeController extends FrontController
         ));
     }
 
-    public function actionNode()
-    {
-
-    }
-
     /**
      * [actionView description]
      * @param  [type] $id [description]
@@ -171,5 +174,14 @@ class HomeController extends FrontController
     {
         Yii::app()->user->logout();
         $this->redirect($this->createUrl("home/index"));
+    }
+
+    /**
+     * [actionUser description]
+     * @return [type]     [description]
+     */
+    public function actionUser()
+    {
+        $this->render("user");
     }
 }

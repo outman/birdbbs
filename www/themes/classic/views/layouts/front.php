@@ -18,7 +18,7 @@
             <?php if (!Yii::app()->user->isGuest): ?>
             <ul class="nav navbar-nav pull-right">
                 <li class="active">
-                    <a href="<?php echo Yii::app()->createUrl("home/center"); ?>"><?php echo CHtml::encode(Yii::app()->user->name); ?></a>
+                    <a href="<?php echo Yii::app()->createUrl("home/user"); ?>"><?php echo CHtml::encode(Yii::app()->user->name); ?></a>
                 </li>
                 <li><a href="<?php echo Yii::app()->createUrl("home/logout") ?>">退出</a></li>
             </ul>

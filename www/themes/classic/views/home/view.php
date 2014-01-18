@@ -4,7 +4,6 @@ $p->options = array('URI.AllowedSchemes'=>array(
     'http' => true,
     'https' => true,
 ));
-// $text = $p->purify($text);
 ?>
 <div class="row">
     <div class="col-md-9">
@@ -22,13 +21,13 @@ $p->options = array('URI.AllowedSchemes'=>array(
                         <span class="light">
                             <?php echo Util::timeElapsedStr($model->createTime); ?>
                             |
-                            By <a href="<?php echo $this->createUrl("home/user", array("id"=>$model->userId)) ?>"><?php echo CHtml::encode($model->user->username); ?></a>
+                            By <a href="<?php echo $this->createUrl("home/index", array("Post[userId]"=>$model->userId)) ?>"><?php echo CHtml::encode($model->user->username); ?></a>
                             |
                             <?php echo $model->hits; ?> 次点击
                         </span>
                     </div>
                     <div class="col-md-1">
-                        <a href="<?php echo $this->createUrl('home/user', array('id'=>$model->userId)); ?>" class="pull-right">
+                        <a href="<?php echo $this->createUrl('home/index', array('Post[userId]'=>$model->userId)); ?>" class="pull-right">
                             <?php if ($model->user->email): ?>
                             <img src="<?php echo Util::gavatar($model->user->email); ?>" alt="<?php CHtml::encode($model->user->username); ?>">
                             <?php else: ?>
@@ -55,7 +54,7 @@ $p->options = array('URI.AllowedSchemes'=>array(
         <?php foreach ($model->comments as $k => $v): ?>
         <div class="row">
             <div class="col-md-1">
-                <a href="<?php echo $this->createUrl("home/user", array('id' => $v->userId)); ?>">
+                <a href="<?php echo $this->createUrl("home/index", array('Post[userId]' => $v->userId)); ?>">
                     <?php if ($v->user->email): ?>
                     <img src="<?php echo Util::gavatar($v->user->email); ?>" alt="<?php CHtml::encode($v->user->username); ?>">
                     <?php else: ?>

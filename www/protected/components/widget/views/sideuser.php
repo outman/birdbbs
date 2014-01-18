@@ -1,13 +1,13 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a href="<?php echo Yii::app()->createUrl("home/center"); ?>">
+        <a href="<?php echo Yii::app()->createUrl("home/user"); ?>">
             <h5><?php echo CHtml::encode(Yii::app()->user->name); ?></h5>
         </a>
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3">
-                <a href="<?php echo Yii::app()->createUrl("home/center"); ?>"><img src="<?php echo $user['avatar']; ?>"></a>
+                <a href="<?php echo Yii::app()->createUrl("home/user"); ?>"><img src="<?php echo $user['avatar']; ?>"></a>
             </div>
             <div class="col-md-9">
                 <span>发帖：<?php echo $user['post']; ?></span><br>
