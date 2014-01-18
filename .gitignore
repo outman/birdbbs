@@ -1,6 +1,7 @@
 .DS_Store
 www/assets/
-www/upload/
+www/upload/*
+!www/upload/index.html
 www/protected/runtime/HTML/
 www/protected/runtime/URI/
 www/protected/runtime/gii-1.1.14/
