@@ -1,4 +1,5 @@
 <?php 
+$userId = (int) Yii::app()->user->id;
 $p = new CHtmlPurifier();
 $p->options = array('URI.AllowedSchemes'=>array(
     'http' => true,
@@ -67,11 +68,16 @@ $p->options = array('URI.AllowedSchemes'=>array(
                     <div class="col-md-11">
                         <a group="reply" href="javascript:;"><?php echo CHtml::encode($v->user->username); ?></a>
                         <span class="light"><?php echo Util::timeElapsedStr($v->createTime); ?></span>
+                        <?php if ($v->userId == $userId): ?>
+                        <a href="<?php echo $this->createUrl("home/delcomment", array("id"=>$v->id)); ?>">[删除]</a>
+                        <?php endif; ?>
                         <article>
-                            <?php echo $v->content; ?>
+                            <?php echo $p->purify($v->content); ?>
                         </article>
                     </div>
-                    <div class="col-md-1"><span class="badge">#<?php echo ($k + 1); ?></span></div>
+                    <div class="col-md-1">
+                        <span class="badge">#<?php echo ($k + 1); ?></span>
+                    </div>
                 </div>
             </div>
         </div>

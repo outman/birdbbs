@@ -29,7 +29,7 @@ class Comment extends Model
         return array(
             array('postId, userId, content', 'required'),
             array('postId, userId, createTime, updateTime', 'length', 'max'=>10),
-            array('id, postId, userId, content, createTime, updateTime', 'safe', 'on'=>'search'),
+            array('id, postId, userId', 'safe', 'on'=>'search'),
         );
     }
 
@@ -82,6 +82,9 @@ class Comment extends Model
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
             'sort' => array('defaultOrder' => 'id desc'),
+            'pagination' => array(
+                'pageSize' => 20,
+            )
         ));
     }
 

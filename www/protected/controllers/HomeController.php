@@ -20,7 +20,7 @@ class HomeController extends FrontController
         return array(
             array(
                 'deny',
-                'actions' => array('post', 'user'),
+                'actions' => array('post', 'user', 'comment'),
                 'users' => array('?'),
             ),
             array(
@@ -181,7 +181,83 @@ class HomeController extends FrontController
      * @return [type]     [description]
      */
     public function actionUser()
+    {   
+        $userId = (int) Yii::app()->user->id;
+        $model = new Post('search');
+        $model->unsetAttributes();
+        if (isset($_GET['Post'])) {
+            $model->attributes = $_GET['Post'];
+        }
+
+        $model->userId = $userId;
+        $model->status = Post::STATUS_NORMAL;
+
+        $this->render("user", array(
+            'model' => $model,
+        ));
+    }
+
+    /**
+     * [actionComment description]
+     * @return [type] [description]
+     */
+    public function actionComment()
     {
-        $this->render("user");
+        $userId = (int) Yii::app()->user->id;
+        $model = new Comment('search');
+        $model->unsetAttributes();
+        if (isset($_GET['Comment'])) {
+            $model->attributes = $_GET['Comment'];
+        }
+
+        $model->userId = $userId;
+
+        $this->render("comment", array(
+            'model' => $model,
+        ));
+    }
+
+    /**
+     * [actionDelcomment description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function actionDelcomment($id)
+    {
+        $userId = (int) Yii::app()->user->id;
+
+        $model = Comment::model()->findByPk($id);
+        if (empty($model)) {
+            throw new CHttpException(404, "该记录不存在或已删除.");
+        }
+
+        if ($model->userId == $userId) {
+            $postId = $model->postId;
+            $model->delete();
+            $this->redirect($this->createUrl("home/view", array("id" => $postId)));
+        }
+
+        else {
+            throw new CHttpException(403, "您无权删除该内容，请联系管理员.");
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        $userId = (int) Yii::app()->user->id;
+        $model = Post::model()->findByPk($id);
+        if (empty($model)) {
+            throw new CHttpException(404, "该记录不存在或已删除.");
+        }
+
+        if ($model->userId == $userId) {
+            $model->status = Post::STATUS_FROZEN;
+            $model->save();
+            $this->redirect($this->createUrl("home/user"));
+        }
+
+        else {
+            throw new CHttpException(403, "您无权删除该内容，请联系管理员.");
+        }
     }
 }
