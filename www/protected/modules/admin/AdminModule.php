@@ -4,7 +4,19 @@ class AdminModule extends CWebModule
 {
     public function init()
     {
-        // import the module-level models and components
+        Yii::app()->setComponents(array(
+            'errorHandler' => array(
+                'errorAction' => 'admin/error/index',
+            ),
+
+            'user' => array(
+                'class' => 'CWebUser',
+                'stateKeyPrefix' => '_buxiangshuo_',
+                'loginUrl' => Yii::app()->createUrl($this->getId() . '/default/login'),
+            ),
+
+        ));
+
         $this->setImport(array(
             'admin.models.*',
             'admin.components.*',

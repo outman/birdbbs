@@ -137,4 +137,26 @@ class Post extends Model
     {
         return parent::model($className);
     }
+
+    /**
+     * [chart description]
+     * @return [type] [description]
+     */
+    public function chart()
+    {
+        $startTime = strtotime("-1 day");
+        $sql = "select FROM_UNIXTIME(createTime, '%Y-%m-%d %H:00:00') as hours, count(id)  as count from {{post}} where createTime > :start group by hours order by hours";
+        $models = Yii::app()->db->cache(300)->createCommand($sql)->queryAll(true, array(
+            ":start" => $startTime,
+        ));
+
+        $ret = array();
+        if ($models) foreach ($models as $v) {
+            $ret[] = array(
+                'hour' => substr($v['hours'], -8),
+                'count' => $v['count'],
+            );
+        }
+        return $ret;
+    }
 }

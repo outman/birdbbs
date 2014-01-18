@@ -22,6 +22,10 @@
                 <li<?php if ($id == "outlink"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/outlink/admin") ?>">友情链接</a></li>
                 <li<?php if ($id == "admin"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/admin/admin") ?>">管理员</a></li>
             </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="active"><a href="javascript:;"><?php echo CHtml::encode(Yii::app()->user->name); ?></a></li>
+                <li><a href="<?php echo Yii::app()->createUrl("admin/default/logout"); ?>">退出</a></li>
+            </ul>
         </div>
     </div>
 </div>

@@ -2,7 +2,34 @@
 
 class CommentController extends BackendController
 {
+    public $pageTitle = "评论管理";
     public $defaultAction = "admin";
+
+    /**
+     * [filters description]
+     * @return [type] [description]
+     */
+    public function filters()
+    {
+        return array('accessControl');
+    }
+
+    /**
+     * [accessRules description]
+     * @return [type] [description]
+     */
+    public function accessRules()
+    {
+        return array(
+            array(
+                'allow',
+                'users'=>array('@'),
+            ),
+            array(
+                'deny',
+            )
+        );
+    }
    
     /**
      * Deletes a particular model.

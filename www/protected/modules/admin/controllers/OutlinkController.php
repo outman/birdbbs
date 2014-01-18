@@ -2,6 +2,34 @@
 
 class OutlinkController extends BackendController
 {
+    public $pageTitle = "友情链接";
+    
+    /**
+     * [filters description]
+     * @return [type] [description]
+     */
+    public function filters()
+    {
+        return array('accessControl');
+    }
+
+    /**
+     * [accessRules description]
+     * @return [type] [description]
+     */
+    public function accessRules()
+    {
+        return array(
+            array(
+                'allow',
+                'users'=>array('@'),
+            ),
+            array(
+                'deny',
+            )
+        );
+    }
+
     public $defaultAction = "admin";
 
     /**

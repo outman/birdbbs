@@ -12,7 +12,7 @@
  * @property string $createTime
  * @property string $updateTime
  */
-class Admin extends CActiveRecord
+class Admin extends Model
 {
     const STATUS_NORMAL = 1;
     const STATUS_FROZEN = 2;
@@ -61,16 +61,14 @@ class Admin extends CActiveRecord
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
             array('email, password', 'required'),
+            array('email', 'email'),
+            array('email', 'unique'),
             array('status', 'numerical', 'integerOnly'=>true),
             array('email, password', 'length', 'max'=>128),
             array('loginIp', 'length', 'max'=>64),
             array('createTime, updateTime', 'length', 'max'=>10),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
             array('id, email, password, status, loginIp, createTime, updateTime', 'safe', 'on'=>'search'),
         );
     }
@@ -80,8 +78,6 @@ class Admin extends CActiveRecord
      */
     public function relations()
     {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
         return array(
         );
     }

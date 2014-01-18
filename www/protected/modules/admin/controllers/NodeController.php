@@ -2,6 +2,33 @@
 
 class NodeController extends BackendController
 {
+    public $pageTitle = "节点管理";
+    
+    /**
+     * [filters description]
+     * @return [type] [description]
+     */
+    public function filters()
+    {
+        return array('accessControl');
+    }
+
+    /**
+     * [accessRules description]
+     * @return [type] [description]
+     */
+    public function accessRules()
+    {
+        return array(
+            array(
+                'allow',
+                'users'=>array('@'),
+            ),
+            array(
+                'deny',
+            )
+        );
+    }
 
     /**
      * Displays a particular model.

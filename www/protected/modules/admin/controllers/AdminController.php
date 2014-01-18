@@ -2,6 +2,33 @@
 
 class AdminController extends BackendController
 {
+    public $pageTitle = "管理员管理";
+
+    /**
+     * [filters description]
+     * @return [type] [description]
+     */
+    public function filters()
+    {
+        return array('accessControl');
+    }
+
+    /**
+     * [accessRules description]
+     * @return [type] [description]
+     */
+    public function accessRules()
+    {
+        return array(
+            array(
+                'allow',
+                'users'=>array('@'),
+            ),
+            array(
+                'deny',
+            )
+        );
+    }
 
     /**
      * Displays a particular model.
@@ -21,10 +48,6 @@ class AdminController extends BackendController
     public function actionCreate()
     {
         $model=new Admin;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if(isset($_POST['Admin']))
         {
             $model->attributes=$_POST['Admin'];

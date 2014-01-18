@@ -14,6 +14,11 @@ $version = "?20140114";
     <script type="text/javascript">
     var siteUrl = <?php echo json_encode(Yii::app()->request->hostInfo); ?>;
     </script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript">
+        window.location.href = "<?php echo Yii::app()->createUrl("home/browser"); ?>";
+    </script>
+    <![endif]-->
 </head>
 <body>
 <?php echo $content; ?>

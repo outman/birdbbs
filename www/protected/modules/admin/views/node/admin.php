@@ -16,11 +16,24 @@ $page = $dataProvider->getPagination();
             </ol>
         </div>
         <div class="row">
-          <?php $form = $this->beginWidget("CActiveForm", array(
-            
-          )); ?>
-
-          <?php $this->endWidget(); ?>
+        <?php $form = $this->beginWidget("CActiveForm", array(
+                'id' => 'search-form',
+                'htmlOptions' => array(
+                    'class' => 'form-inline well',
+                ),
+                'method' => 'GET',
+                'action' => $this->createUrl("admin"),
+            )); ?>
+            <div class="row">
+            <div class="col-xs-2">
+                <?php echo $form->textField($model, 'id', array('class'=>'form-control', 'placeholder'=>'id')); ?>
+            </div>
+            <div class="col-xs-2">
+                <?php echo $form->textField($model, 'name',array('class'=>'form-control', 'placeholder'=>'名称')); ?>
+            </div>
+            <input type="submit" class="btn btn-primary" value="搜索">
+            </div>
+        <?php $this->endWidget(); ?>
         </div>
         <div class="row">
             <table class="table table-bordered table-condensed">

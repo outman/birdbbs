@@ -2,6 +2,7 @@
 
 class HomeController extends FrontController
 {
+    
     /**
      * [filters description]
      * @return [type] [description]
@@ -269,5 +270,10 @@ class HomeController extends FrontController
         else {
             throw new CHttpException(403, "您无权删除该内容，请联系管理员.");
         }
+    }
+
+    public function actionBrowser()
+    {
+        $this->renderPartial("browser");
     }
 }
