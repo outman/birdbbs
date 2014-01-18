@@ -1,5 +1,8 @@
 .DS_Store
 www/assets/
+www/upload/
+www/protected/runtime/HTML/
+www/protected/runtime/URI/
 www/protected/runtime/gii-1.1.14/
 www/protected/runtime/*.log
 !www/protected/runtime/.htaccess

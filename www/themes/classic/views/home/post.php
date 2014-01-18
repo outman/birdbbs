@@ -30,8 +30,7 @@
                     <?php echo $form->dropDownList($model, "nodeId", CHtml::listData($nodes, "id", "name"), array("class"=>"form-control", 'style'=>'width:220px;')); ?>
                 </div>
                 <div class="form-group">
-                    <?php echo $form->hiddenField($model, "content"); ?>
-                    <div id="epiceditor"></div>
+                    <?php echo $form->textArea($model, "content", array("class"=>'form-control', 'style'=>'min-height:480px')); ?>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="发布">
@@ -50,12 +49,14 @@
                 <ul style="padding-left: 16px;">
                 <li>请明确填写标题</li>
                 <li>请选择正确的节点</li>
-                <li>发帖内容支持Markdown格式</li>
                 </ul>
             </div>
         </div>
         <?php $this->widget("SideHotPostWidget"); ?>
     </div>
 </div>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/markdown/js/epiceditor.js"></script>
+<script type="text/javascript">
+var IMAGE_UPLOAD_URL = <?php echo json_encode($this->createUrl("upload/index")); ?>;
+</script>
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/ke/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/js/editor.js"></script>

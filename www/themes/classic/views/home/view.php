@@ -1,3 +1,11 @@
+<?php 
+$p = new CHtmlPurifier();
+$p->options = array('URI.AllowedSchemes'=>array(
+    'http' => true,
+    'https' => true,
+));
+// $text = $p->purify($text);
+?>
 <div class="row">
     <div class="col-md-9">
         <ol class="breadcrumb">
@@ -33,12 +41,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <article>
-                        <?php $this->beginWidget('CMarkdown', array(
-                                'purifyOutput' => true,
-                                'cssFile' => false,
-                            ));?>
-                        <?php echo $model->content; ?>    
-                        <?php $this->endWidget(); ?>
+                        <?php echo $p->purify($model->content); ?>    
                         </article>
                     </div>
                 </div>

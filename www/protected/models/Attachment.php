@@ -14,7 +14,7 @@
  * @property string $parentId
  * @property string $createTime
  */
-class Attachment extends CActiveRecord
+class Attachment extends Model
 {
     /**
      * @return string the associated database table name
