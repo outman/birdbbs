@@ -20,7 +20,7 @@ class HomeController extends FrontController
         return array(
             array(
                 'deny',
-                'actions' => array('post', 'user', 'comment'),
+                'actions' => array('post', 'user', 'comment', 'delete', 'delcomment'),
                 'users' => array('?'),
             ),
             array(

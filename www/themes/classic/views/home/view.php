@@ -102,7 +102,7 @@ $p->options = array('URI.AllowedSchemes'=>array(
         <?php echo $form->hiddenField($comment, 'postId', array('value' => $model->id)); ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span class="light">支持 Markdown</span>
+                <span class="light">回复</span>
             </div>
             <div class="panel-body">
                 <?php echo $form->textArea($comment, 'content', array('class'=>'form-control', 'style'=>'height:100px;resize:none;')); ?>
@@ -133,6 +133,11 @@ $p->options = array('URI.AllowedSchemes'=>array(
     <?php $this->widget("SideOutlinkWidget"); ?>
     </div>
 </div>
+<script type="text/javascript">
+var IMAGE_UPLOAD_URL = <?php echo json_encode($this->createUrl("upload/index")); ?>;
+</script>
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/ke/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/js/editor.js"></script>
 <script type="text/javascript">
 $(function(){
     $('a[group="reply"]').on('click', function(){
