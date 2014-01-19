@@ -2,8 +2,9 @@
 
 class OutlinkController extends BackendController
 {
-    public $pageTitle = "友情链接";
-    
+    public function init() {
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_OUTLINK');
+    }
     /**
      * [filters description]
      * @return [type] [description]
@@ -130,7 +131,7 @@ class OutlinkController extends BackendController
     {
         $model=Outlink::model()->findByPk($id);
         if($model===null)
-            throw new CHttpException(404,'该记录不存在.');
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         return $model;
     }
 

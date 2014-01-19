@@ -2,8 +2,12 @@
 
 class NodeController extends BackendController
 {
-    public $pageTitle = "节点管理";
-    
+
+    public function init()
+    {
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_NODE');
+    }
+
     /**
      * [filters description]
      * @return [type] [description]
@@ -139,7 +143,7 @@ class NodeController extends BackendController
     {
         $model=Node::model()->findByPk($id);
         if($model===null)
-            throw new CHttpException(404,'该记录不存在.');
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         return $model;
     }
 

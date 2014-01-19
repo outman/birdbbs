@@ -2,8 +2,12 @@
 
 class UserController extends BackendController
 {
-    public $pageTitle = "用户管理";
     public $defaultAction = "admin";
+
+    public function init()
+    {
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_USER');
+    }
 
     /**
      * [filters description]
@@ -135,7 +139,7 @@ class UserController extends BackendController
     {
         $model=User::model()->findByPk($id);
         if($model===null)
-            throw new CHttpException(404,'该记录不存在.');
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         return $model;
     }
 

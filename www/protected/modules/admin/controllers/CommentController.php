@@ -2,7 +2,6 @@
 
 class CommentController extends BackendController
 {
-    public $pageTitle = "评论管理";
     public $defaultAction = "admin";
 
     /**
@@ -12,6 +11,11 @@ class CommentController extends BackendController
     public function filters()
     {
         return array('accessControl');
+    }
+
+    public function init()
+    {
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_COMMENT');
     }
 
     /**
@@ -71,7 +75,7 @@ class CommentController extends BackendController
     {
         $model=Comment::model()->findByPk($id);
         if($model===null)
-            throw new CHttpException(404,'该记录不存在.');
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         return $model;
     }
 

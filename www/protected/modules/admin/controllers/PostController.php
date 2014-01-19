@@ -2,9 +2,11 @@
 
 class PostController extends BackendController
 {
-    public $pageTitle = "帖子管理";
     public $defaultAction = "admin";
+    public function init() {
 
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_POST_ADMIN');
+    }
     /**
      * [filters description]
      * @return [type] [description]
@@ -73,7 +75,7 @@ class PostController extends BackendController
     {
         $model=Post::model()->findByPk($id);
         if($model===null)
-            throw new CHttpException(404,'该记录不存在.');
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         return $model;
     }
 }

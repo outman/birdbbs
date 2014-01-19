@@ -2,7 +2,6 @@
 
 class DefaultController extends BackendController
 {
-    public $pageTitle = "Dashboard";
     /**
      * [filters description]
      * @return [type] [description]
@@ -10,6 +9,11 @@ class DefaultController extends BackendController
     public function filters()
     {
         return array('accessControl');
+    }
+
+    public function init()
+    {
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_DASHBOARD');
     }
 
     /**
@@ -42,7 +46,7 @@ class DefaultController extends BackendController
 
     public function actionLogin()
     {
-        $this->pageTitle = '管理员后台';
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_BACKEND');
         $this->layout = "//layouts/default";
 
         $model = new AdminForm;

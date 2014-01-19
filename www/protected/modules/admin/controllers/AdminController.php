@@ -2,7 +2,6 @@
 
 class AdminController extends BackendController
 {
-    public $pageTitle = "管理员管理";
 
     /**
      * [filters description]
@@ -28,6 +27,14 @@ class AdminController extends BackendController
                 'deny',
             )
         );
+    }
+
+    /**
+     * [init description]
+     * @return [type] [description]
+     */
+    public function init() {
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_ADMIN');
     }
 
     /**
@@ -140,7 +147,7 @@ class AdminController extends BackendController
     {
         $model=Admin::model()->findByPk($id);
         if($model===null)
-            throw new CHttpException(404,'该记录不存在.');
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         return $model;
     }
 

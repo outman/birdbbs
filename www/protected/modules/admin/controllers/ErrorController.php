@@ -2,7 +2,11 @@
 
 class ErrorController extends BackendController {
 
-    public $pageTitle = "错误";
+    public function init()
+    {
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_ERROR');
+    }
+    
     public function actionIndex()
     {
         $this->layout = "//layouts//default";
