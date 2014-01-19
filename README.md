@@ -9,14 +9,14 @@
 - PHP 5.3
 - YII Framework1.1.14's requirements
 
-##Contact Us
+##Contact Us & Commercial Service
 >pochonlee@gmail.com
 
 ##Github
-[https://github.com/outman/birdbbs](https://github.com/outman/birdbbs)
+>[https://github.com/outman/birdbbs](https://github.com/outman/birdbbs)
 
 ##GitOschina
-[http://git.oschina.net/outman/birdbbs](http://git.oschina.net/outman/birdbbs)
+>[http://git.oschina.net/outman/birdbbs](http://git.oschina.net/outman/birdbbs)
 
 ##Screen Snapshot
 
@@ -27,7 +27,7 @@
 ![系统截图](doc/images/7.png)
 
 ##License
-MIT
+>MIT
 
 
 
