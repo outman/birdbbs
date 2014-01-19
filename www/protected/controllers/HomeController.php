@@ -39,7 +39,7 @@ class HomeController extends FrontController
      */
     public function actionPost()
     {
-        $this->pageTitle = "发布帖子";
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_POST');
         
         $model = new Post;
 
@@ -69,7 +69,7 @@ class HomeController extends FrontController
      */
     public function actionIndex()
     {
-        $this->pageTitle = "首页";
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_INDEX');
 
         $nodes = Node::model()->findAllByAttributes(array(
             "status" => Node::STATUS_NORMAL,
@@ -96,7 +96,7 @@ class HomeController extends FrontController
      */
     public function actionLogin()
     {
-        $this->pageTitle = '登录';
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_LOGIN');
         $this->layout = "//layouts/default";
 
         $model = new LoginForm;
@@ -119,7 +119,7 @@ class HomeController extends FrontController
      */
     public function actionRegister()
     {
-        $this->pageTitle = '注册';
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_REGISTER');
         $this->layout = "//layouts/default";
 
         $model = new User;
@@ -149,7 +149,7 @@ class HomeController extends FrontController
         $userId = (int) Yii::app()->user->id;
         $post = Post::model()->findByPk($id);
         if (empty($post)) {
-            throw new CHttpException(404, "该记录不存在或已删除.");
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         }
 
         $comment = new Comment;
@@ -191,7 +191,7 @@ class HomeController extends FrontController
      */
     public function actionUser()
     {   
-        $this->pageTitle = '我发的帖子';
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_MY_POST');
         $userId = (int) Yii::app()->user->id;
         $model = new Post('search');
         $model->unsetAttributes();
@@ -213,7 +213,7 @@ class HomeController extends FrontController
      */
     public function actionComment()
     {
-        $this->pageTitle = '我参与回复的帖子';
+        $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_MY_COMMENT');
         $userId = (int) Yii::app()->user->id;
         $model = new Comment('search');
         $model->unsetAttributes();
@@ -239,7 +239,7 @@ class HomeController extends FrontController
 
         $model = Comment::model()->findByPk($id);
         if (empty($model)) {
-            throw new CHttpException(404, "该记录不存在或已删除.");
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         }
 
         if ($model->userId == $userId) {
@@ -249,7 +249,7 @@ class HomeController extends FrontController
         }
 
         else {
-            throw new CHttpException(403, "您无权删除该内容，请联系管理员.");
+            throw new CHttpException(403, Yii::t('zh_CN', 'HTTP_STATUS_403'));
         }
     }
 
@@ -258,7 +258,7 @@ class HomeController extends FrontController
         $userId = (int) Yii::app()->user->id;
         $model = Post::model()->findByPk($id);
         if (empty($model)) {
-            throw new CHttpException(404, "该记录不存在或已删除.");
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         }
 
         if ($model->userId == $userId) {
@@ -268,7 +268,7 @@ class HomeController extends FrontController
         }
 
         else {
-            throw new CHttpException(403, "您无权删除该内容，请联系管理员.");
+            throw new CHttpException(403, Yii::t('zh_CN', 'HTTP_STATUS_403'));
         }
     }
 
