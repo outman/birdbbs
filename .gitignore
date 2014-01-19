@@ -1,4 +1,5 @@
 .DS_Store
+www/product/config/main.php
 www/assets/
 www/upload/*
 !www/upload/index.html
