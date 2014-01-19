@@ -69,6 +69,7 @@ class HomeController extends FrontController
      */
     public function actionIndex()
     {
+
         $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_INDEX');
 
         $nodes = Node::model()->findAllByAttributes(array(

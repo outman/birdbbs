@@ -80,13 +80,13 @@ class UploadController extends FrontController {
 
         $attachment = new Attachment;
         $attachment->path = "{$path}/{$newFileName}";
-        $attachment->url = Yii::app()->request->hostInfo;
         $attachment->name = $newFileName;
         $attachment->mime = $mime;
         $attachment->size = $_FILES['upload']['size'];
+        $attachment->url  = Yii::app()->request->getBaseUrl(true);
 
         if ($attachment->save()) {
-            $ret['url'] = $attachment->url . '/' . $attachment->path;
+            $ret['url']   = $attachment->url . '/' . $attachment->path;
             $ret['error'] = 0;
         }
         
