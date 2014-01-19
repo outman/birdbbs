@@ -71,6 +71,7 @@ $p->options = array('URI.AllowedSchemes'=>array(
                         <?php if ($v->userId == $userId): ?>
                         <a href="<?php echo $this->createUrl("home/delcomment", array("id"=>$v->id)); ?>">[删除]</a>
                         <?php endif; ?>
+                        <div class="dashed"></div>
                         <article>
                             <?php echo $p->purify($v->content); ?>
                         </article>
@@ -133,9 +134,6 @@ $p->options = array('URI.AllowedSchemes'=>array(
     <?php $this->widget("SideOutlinkWidget"); ?>
     </div>
 </div>
-<script type="text/javascript">
-var IMAGE_UPLOAD_URL = <?php echo json_encode($this->createUrl("upload/index")); ?>;
-</script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/ke/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/js/editor.js"></script>
 <script type="text/javascript">

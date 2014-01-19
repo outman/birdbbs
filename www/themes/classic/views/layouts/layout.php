@@ -12,7 +12,7 @@ $version = "?20140114";
     <script type="text/javascript" src="<?php echo $staticUrl; ?>/public/js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo $staticUrl; ?>/public/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-    var siteUrl = <?php echo json_encode(Yii::app()->request->hostInfo); ?>;
+    var IMAGE_UPLOAD_URL = <?php echo json_encode($this->createUrl("upload/index")); ?>;
     </script>
     <!--[if lt IE 9]>
     <script type="text/javascript">

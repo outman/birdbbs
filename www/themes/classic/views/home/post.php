@@ -55,8 +55,5 @@
         <?php $this->widget("SideHotPostWidget"); ?>
     </div>
 </div>
-<script type="text/javascript">
-var IMAGE_UPLOAD_URL = <?php echo json_encode($this->createUrl("upload/index")); ?>;
-</script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/ke/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/js/editor.js"></script>
