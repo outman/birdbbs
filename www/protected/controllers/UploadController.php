@@ -37,7 +37,7 @@ class UploadController extends FrontController {
     {
         $ret = array(
             'error' => 1,
-            'message' => '文件上传失败.',
+            'message' => Yii::t('zh_CN', 'UPLOAD_FAILED'),
         );
 
         if (!isset($_FILES['upload']) 
@@ -58,7 +58,7 @@ class UploadController extends FrontController {
         finfo_close($finfo);
 
         if (!in_array($mime, $this->allowType)) {
-            $ret['message'] = '文件类型只允许 PNG、JPEG、JPG、GIF';
+            $ret['message'] = Yii::t('zh_CN', 'UPLOAD_TYPE');
             echo CJSON::encode($ret);
             Yii::app()->end();
         }
