@@ -4,7 +4,7 @@
 
 > PHP Simple BBS like V2EX
 
-##requirements
+##Requirements
 - MySQL 5.5
 - PHP 5.3
 - YII Framework1.1.14's requirements
