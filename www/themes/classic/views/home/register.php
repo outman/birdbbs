@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
-                <span>用户注册</span>
+                <h4>用户注册</h4>
             </div>
             <div class="panel-body">
                 <?php $form = $this->beginWidget("CActiveForm", array(
