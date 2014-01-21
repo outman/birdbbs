@@ -280,6 +280,6 @@ class HomeController extends FrontController
 
     public function actionInfo()
     {
-        
+        $this->render("info");
     }
 }

@@ -69,7 +69,7 @@ $p->options = array('URI.AllowedSchemes'=>array(
                         <a group="reply" href="javascript:;"><?php echo CHtml::encode($v->user->username); ?></a>
                         <span class="light"><?php echo Util::timeElapsedStr($v->createTime); ?></span>
                         <?php if ($v->userId == $userId): ?>
-                        <a href="<?php echo $this->createUrl("home/delcomment", array("id"=>$v->id)); ?>">[删除]</a>
+                        <a class="badge" href="<?php echo $this->createUrl("home/delcomment", array("id"=>$v->id)); ?>">删除</a>
                         <?php endif; ?>
                         <div class="dashed"></div>
                         <article>
@@ -135,27 +135,29 @@ $p->options = array('URI.AllowedSchemes'=>array(
     </div>
 </div>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/ke/kindeditor-all-min.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/js/editor.js"></script>
 <script type="text/javascript">
 $(function(){
+    var comment;
+    KindEditor.ready(function(K) {
+        comment = K.create('#Comment_content', {
+            formatUploadUrl: false,
+            themeType: "simple",
+            filePostName: 'upload',
+            uploadJson: IMAGE_UPLOAD_URL,
+            items : [
+                'forecolor', 'hilitecolor', 'bold', 'underline', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'image', 'link', 'code'
+            ],
+            cssData: 'body { font-size: 14px; }'
+        });
+    });
     $('a[group="reply"]').on('click', function(){
         var txt = "@" + $(this).text();
-        var obj = document.getElementById('Comment_content');
-        var content = $.trim(obj.value.replace(txt, ''));
-        content = (content ? (content + " "): ("")) + txt + " ";
-        obj.value = content;
-        obj.focus();
-
-        var len = content.length;
-        if (document.selection) {
-            var sel = obj.createTextRange();
-            sel.moveStart('character',len);
-            sel.collapse();
-            sel.select();
+        var content = txt + "&nbsp;";
+        if (!comment.isEmpty()) {
+            content = comment.html() + content;
         }
-        else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
-            obj.selectionStart = obj.selectionEnd = len;
-        }
+        comment.html(content);
     });
 });
 </script>

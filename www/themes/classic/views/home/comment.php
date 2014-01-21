@@ -7,7 +7,7 @@ $page = $dataProvider->getPagination(); ?>
         <ul class="nav nav-tabs">
             <li><a href="<?php echo $this->createUrl("home/user"); ?>" class="label label-default">我发的帖子</a></li>
             <li class="active"><a href="<?php echo $this->createUrl("home/comment"); ?>" class="label label-primary">我参与回复的帖子</a></li>
-            <li><a href="" class="label label-default">资料</a></li>
+            <li><a href="<?php echo $this->createUrl("home/info") ?>" class="label label-default">资料</a></li>
         </ul>
         <div class="panel panel-default">
             <table class="table table-bordered table-condensed">

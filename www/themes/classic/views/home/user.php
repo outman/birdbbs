@@ -5,8 +5,9 @@ $page = $dataProvider->getPagination(); ?>
 <div class="row">
     <div class="col-md-9">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="<?php echo $this->createUrl("home/user"); ?>" class="label label-primary">我发的帖子</a></li>
-            <li><a href="<?php echo $this->createUrl("home/comment"); ?>" class="label label-primary">我参与回复的帖子</a></li>
+            <li class="active"><a href="<?php echo $this->createUrl("home/user"); ?>" class="label label-default">我发的帖子</a></li>
+            <li><a href="<?php echo $this->createUrl("home/comment"); ?>" class="label label-default">我参与回复的帖子</a></li>
+            <li><a href="<?php echo $this->createUrl("home/info") ?>" class="label label-default">资料</a></li>
         </ul>
         
         <div class="panel panel-default">
