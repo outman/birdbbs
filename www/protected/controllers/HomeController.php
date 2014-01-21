@@ -254,6 +254,11 @@ class HomeController extends FrontController
         }
     }
 
+    /**
+     * 删帖子
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function actionDelete($id)
     {
         $userId = (int) Yii::app()->user->id;
@@ -278,8 +283,27 @@ class HomeController extends FrontController
         $this->renderPartial("browser");
     }
 
+    /**
+     * 用户资料信息
+     * @return [type] [description]
+     */
     public function actionInfo()
     {
-        $this->render("info");
+        $uid = Yii::app()->user->id;
+        $model = User::model()->findByPk($uid);
+        if (empty($model)) {
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
+        }
+
+        if (isset($_POST['User'])) {
+            $model->attributes = $_POST['User'];
+            if ($model->validate()) {
+                
+            }
+        }
+
+        $this->render("info", array(
+            'model' => $model,
+        ));
     }
 }

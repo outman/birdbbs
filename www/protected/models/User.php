@@ -66,6 +66,7 @@ class User extends Model
             array('username, location', 'length', 'max'=>32),
             array('password, email, flag', 'length', 'max'=>128),
             array('siteUrl, avatar', 'length', 'max'=>512),
+            array('siteUrl', 'url'),
             array('qq', 'length', 'max'=>20),
             array('intro', 'length', 'max'=>256),
             array('createTime', 'length', 'max'=>10),
