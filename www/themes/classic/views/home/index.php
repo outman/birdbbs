@@ -26,7 +26,7 @@ $page = $dataProvider->getPagination();
                         </a>
                     </div>
                     <div class="col-md-10">
-                        <a href="<?php echo $this->createUrl("home/view", array("id" => $v->id)); ?>"><h4><?php echo CHtml::encode($v->title); ?></h4></a>
+                        <a href="<?php echo $this->createUrl("home/view", array("id" => $v->id)); ?>"><h5><?php echo CHtml::encode($v->title); ?></h5></a>
                         <?php if (isset($v->node->name)): ?>
                         <span><a href="<?php echo $this->createUrl("home/index", array("Post[nodeId]"=>$v->nodeId)); ?>" class="label label-primary"><?php echo CHtml::encode($v->node->name); ?></a></span>
                         <?php endif; ?>
