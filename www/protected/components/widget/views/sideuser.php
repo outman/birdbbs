@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <a href="<?php echo Yii::app()->createUrl("home/user"); ?>">
-            <h5><?php echo CHtml::encode(Yii::app()->user->name); ?></h5>
+            <?php echo CHtml::encode(Yii::app()->user->name); ?>
         </a>
     </div>
     <div class="panel-body">
