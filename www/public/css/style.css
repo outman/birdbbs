@@ -1,21 +1,12 @@
 body {
-    background: #e2e2e2; padding-top: 64px; min-height: 768px;
-}
-
-div.login-btn {
-    text-align: center;
+    background: #e2e2e2; padding-top: 70px; min-height: 768px;
 }
 
 a.light, span.light {
     color: #ccc;
     font-size: 12px;
 }
-.breadcrumb {
-    background: #fff;
-}
-.panel-default>.panel-heading {
-    background: #fff;
-}
+
 div.dashed {
     height: 16px;
     border-bottom: 1px dashed #ccc;

@@ -12,7 +12,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="<?php echo Yii::app()->createUrl("home/index") ?>">首页</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl("home/index") ?>">首页</a></li>
                 <?php $this->widget('NodeNavWidget'); ?>
             </ul>
             <ul class="nav navbar-nav pull-right">
@@ -20,7 +20,7 @@
                 <li><a href="<?php echo Yii::app()->createUrl("home/login"); ?>">登录</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl("home/register"); ?>">注册</a></li>
                 <?php else: ?>
-                <li class="active">
+                <li>
                     <a href="<?php echo Yii::app()->createUrl("home/user"); ?>"><?php echo CHtml::encode(Yii::app()->user->name); ?></a>
                 </li>
                 <li><a href="<?php echo Yii::app()->createUrl("home/logout") ?>">退出</a></li>

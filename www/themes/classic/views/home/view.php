@@ -8,13 +8,13 @@ $p->options = array('URI.AllowedSchemes'=>array(
 ?>
 <div class="row">
     <div class="col-md-9">
-        <ol class="breadcrumb">
-            <li><a href="<?php echo $this->createUrl("home/index") ?>">首页</a></li>
-            <li><?php echo CHtml::encode(isset($model->node->name)?$model->node->name:"默认"); ?></li>
-        </ol>
-
         <!-- view -->
         <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="<?php echo $this->createUrl("home/index") ?>">首页</a>
+                <span>/</span>
+                <?php echo CHtml::encode(isset($model->node->name)?$model->node->name:"默认"); ?>
+            </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-11">

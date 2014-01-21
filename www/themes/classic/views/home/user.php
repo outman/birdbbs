@@ -12,7 +12,7 @@ $page = $dataProvider->getPagination(); ?>
         <div class="panel panel-default">
             <table class="table table-bordered table-condensed">
                 <tr>
-                    <td style="width: 80px;">#</td>
+                    <td style="width: 92px;">#</td>
                     <td>标题</td>
                     <td style="width: 80px;">操作</td>
                 </tr>
