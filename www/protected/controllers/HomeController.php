@@ -21,7 +21,7 @@ class HomeController extends FrontController
         return array(
             array(
                 'deny',
-                'actions' => array('post', 'user', 'comment', 'delete', 'delcomment'),
+                'actions' => array('post', 'user', 'comment', 'delete', 'delcomment', 'info'),
                 'users' => array('?'),
             ),
             array(
@@ -276,5 +276,10 @@ class HomeController extends FrontController
     public function actionBrowser()
     {
         $this->renderPartial("browser");
+    }
+
+    public function actionInfo()
+    {
+        
     }
 }

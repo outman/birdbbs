@@ -7,9 +7,9 @@ $page = $dataProvider->getPagination();
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">
-            <a class="label label-primary" href="<?php echo $this->createUrl("home/index"); ?>">全部</a>
+            <a class="label label-default" href="<?php echo $this->createUrl("home/index"); ?>">全部</a>
             <?php if ($nodes) foreach ($nodes as $v): ?>
-            <a href="<?php echo $this->createUrl("home/index", array("Post[nodeId]"=>$v->id)) ?>" class="label label-primary"><?php echo CHtml::encode($v->name); ?></a>
+            <a href="<?php echo $this->createUrl("home/index", array("Post[nodeId]"=>$v->id)) ?>" class="label label-default"><?php echo CHtml::encode($v->name); ?></a>
             <?php endforeach; ?>
             </div>
             <div class="panel-body">
@@ -26,9 +26,9 @@ $page = $dataProvider->getPagination();
                         </a>
                     </div>
                     <div class="col-md-10">
-                        <a href="<?php echo $this->createUrl("home/view", array("id" => $v->id)); ?>"><h5><?php echo CHtml::encode($v->title); ?></h5></a>
+                        <a href="<?php echo $this->createUrl("home/view", array("id" => $v->id)); ?>"><h4 class="post-title"><?php echo CHtml::encode($v->title); ?></h4></a>
                         <?php if (isset($v->node->name)): ?>
-                        <span><a href="<?php echo $this->createUrl("home/index", array("Post[nodeId]"=>$v->nodeId)); ?>" class="label label-primary"><?php echo CHtml::encode($v->node->name); ?></a></span>
+                        <span><a href="<?php echo $this->createUrl("home/index", array("Post[nodeId]"=>$v->nodeId)); ?>" class="label label-default"><?php echo CHtml::encode($v->node->name); ?></a></span>
                         <?php endif; ?>
                         <?php if (isset($v->user->username)): ?>
                         <span class="light">•</span>

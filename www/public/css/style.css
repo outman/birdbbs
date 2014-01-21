@@ -6,7 +6,9 @@ a.light, span.light {
     color: #ccc;
     font-size: 12px;
 }
-
+h4.post-title {
+    margin-top: 0px;
+}
 div.dashed {
     height: 16px;
     border-bottom: 1px dashed #ccc;
