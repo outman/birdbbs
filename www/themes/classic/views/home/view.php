@@ -134,6 +134,7 @@ $p->options = array('URI.AllowedSchemes'=>array(
     <?php $this->widget("SideOutlinkWidget"); ?>
     </div>
 </div>
+<?php if (!Yii::app()->user->isGuest): ?>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/ke/kindeditor-all-min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -161,3 +162,4 @@ $(function(){
     });
 });
 </script>
+<?php endif; ?>
