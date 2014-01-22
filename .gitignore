@@ -8,4 +8,5 @@ www/protected/runtime/URI/
 www/protected/runtime/cache/
 www/protected/runtime/gii-1.1.14/
 www/protected/runtime/*.log
+www/protected/runtime/*.bin
 !www/protected/runtime/.htaccess

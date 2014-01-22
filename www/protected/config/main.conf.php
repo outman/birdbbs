@@ -24,8 +24,13 @@ return array(
 
     // application components
     'components'=>array(
+        
+        'request' => array(
+            'enableCsrfValidation'=>true,
+            'enableCookieValidation'=>true,
+        ),
+
         'user'=>array(
-            // enable cookie-based authentication
             'allowAutoLogin'=>true,
             'loginUrl' => array('home/login'),
         ),
@@ -63,7 +68,5 @@ return array(
             ),
         ),
     ),
-    'params'=>array(
-        'adminEmail'=>'webmaster@example.com',
-    ),
+    'params' => require(__DIR__ . '/params.php'),
 );
