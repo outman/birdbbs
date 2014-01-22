@@ -163,3 +163,6 @@ $(function(){
 });
 </script>
 <?php endif; ?>
+<script type="text/javascript">
+$.ajax(<?php echo json_encode($this->createUrl("ajax/postView", array("id"=>$model->id))); ?>);
+</script>

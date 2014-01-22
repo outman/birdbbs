@@ -169,11 +169,7 @@ class HomeController extends FrontController
             }
         }
 
-        $post->hits += 1;
-        $post->save();
-
         $this->pageTitle = $post->title;
-
         $this->render("view", array(
             "model" => $post,
             "comment" => $comment,
