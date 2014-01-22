@@ -72,19 +72,9 @@ class User extends Model
             array('siteUrl', 'length', 'max' => 512, 'on' => 'update'),
             array('siteUrl', 'url', 'on' => 'update'),
 
-            array('username, password, email', 'required'),
-            array('email', 'email'),
-            array('username, email', 'unique'),
-            array('status', 'numerical', 'integerOnly'=>true),
-            array('username, location', 'length', 'max'=>32),
-            array('password, email, flag', 'length', 'max'=>128),
-            array('siteUrl, avatar', 'length', 'max'=>512),
-            array('siteUrl', 'url'),
-            array('qq', 'length', 'max'=>20),
-            array('intro', 'length', 'max'=>256),
-            array('createTime', 'length', 'max'=>10),
-            array('lastIp', 'length', 'max'=>64),
-            array('id, username, email', 'safe', 'on'=>'search'),
+            array('password', 'required', 'on' => 'password'),
+            array('password', 'length', 'min' => 5, 'max' => 20, 'on' => 'password'),
+
         );
     }
 

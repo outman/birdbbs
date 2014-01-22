@@ -57,17 +57,11 @@ class Post extends Model
     public function rules()
     {
         return array(
-
             array('title, nodeId, content', 'required', 'on' => 'post'),
             array('title', 'length', 'max'=>256, 'on' => 'post'),
             array('title, nodeId, content', 'required', 'on' => 'post'),
             array('nodeId', 'numerical', 'integerOnly' => true, 'on' => 'post'),
             array('nodeId', 'length', 'max' => 10),
-
-            array('userId, title, nodeId, content', 'required'),
-            array('status', 'numerical', 'integerOnly'=>true),
-            array('userId, nodeId, reply, sort, hits, lastUpdateUserId, createTime, updateTime', 'length', 'max'=>10),
-            array('title', 'length', 'max'=>256),
             array('id, userId, nodeId', 'safe', 'on'=>'search'),
         );
     }

@@ -8,6 +8,7 @@ $page = $dataProvider->getPagination(); ?>
             <li class="active"><a href="<?php echo $this->createUrl("home/user"); ?>" class="label label-default">我的帖子</a></li>
             <li><a href="<?php echo $this->createUrl("home/comment"); ?>" class="label label-default">我的回复</a></li>
             <li><a href="<?php echo $this->createUrl("home/info") ?>" class="label label-default">我的资料</a></li>
+            <li><a href="<?php echo $this->createUrl("home/password") ?>" class="label label-default">修改密码</a></li>
         </ul>
         
         <div class="panel panel-default">

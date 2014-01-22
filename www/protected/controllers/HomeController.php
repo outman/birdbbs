@@ -278,6 +278,10 @@ class HomeController extends FrontController
         }
     }
 
+    /**
+     * 浏览器支持情况
+     * @return [type] [description]
+     */
     public function actionBrowser()
     {
         $this->renderPartial("browser");
@@ -306,6 +310,43 @@ class HomeController extends FrontController
         }
 
         $this->render("info", array(
+            'model' => $model,
+        ));
+    }
+
+
+    /**
+     * [actionPassword description]
+     * @return [type] [description]
+     */
+    public function actionPassword()
+    {   
+
+        $uid = Yii::app()->user->id;
+        $model = User::model()->findByPk($uid);
+        if (empty($model)) {
+            throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
+        }
+
+        $model->setScenario('password');
+
+        if (isset($_POST['User'])) {
+            $model->attributes = $_POST['User'];
+            if ($model->validate()) {
+                $model->password = CPasswordHelper::hashPassword($model->password);
+                if ($model->save(false)) {
+                    Yii::app()->user->setFlash(":notice", Yii::t('zh_CN', 'OPTS_SUCCESS'));
+                    Yii::app()->user->logout();
+                    $this->redirect($this->createUrl('home/login'));
+                }
+                else {
+                    Yii::app()->user->setFlash(":notice", Yii::t('zh_CN', 'OPTS_FAILED')); 
+                    $this->redirect($this->createUrl('home/password'));
+                }
+            }
+        }
+
+        $this->render("password", array(
             'model' => $model,
         ));
     }
