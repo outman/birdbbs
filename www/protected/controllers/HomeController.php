@@ -41,7 +41,7 @@ class HomeController extends FrontController
     {
         $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_POST');
         
-        $model = new Post;
+        $model = new Post('post');
 
         if (isset($_POST['Post'])) {
             
@@ -105,6 +105,11 @@ class HomeController extends FrontController
             
             $model->attributes = $_POST['LoginForm'];
             if ($model->validate() && $model->login()) {
+
+                User::model()->updateByPk(Yii::app()->user->id, array(
+                    'lastIp' => Yii::app()->request->userHostAddress
+                ), 'id = ' . Yii::app()->user->id);
+
                 $this->redirect(array("home/index"));
             }
         }
@@ -123,15 +128,14 @@ class HomeController extends FrontController
         $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_REGISTER');
         $this->layout = "//layouts/default";
 
-        $model = new User;
+        $model = new User('register');
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
             if ($model->validate()) {
                 $model->password = CPasswordHelper::hashPassword($model->password);
-                if ($model->save()) {
+                if ($model->save(false)) {
                     $this->redirect($this->createUrl("home/login"));
                 }
-                
             }
         }
 
@@ -153,7 +157,7 @@ class HomeController extends FrontController
             throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         }
 
-        $comment = new Comment;
+        $comment = new Comment('post');
         if (isset($_POST['Comment'])) {
             $comment->attributes = $_POST['Comment'];
             $comment->userId = $userId;

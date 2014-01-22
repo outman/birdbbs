@@ -61,7 +61,7 @@
         </table>
         </div>
         <div class="row">
-            <a class="btn btn-default" href="<?php echo $this->createUrl("admin"); ?>">返回列表</a>
+            <a class="btn btn-primary" href="<?php echo $this->createUrl("admin"); ?>">返回列表</a>
         </div>
     </div>
 </div>

@@ -59,6 +59,12 @@ class User extends Model
     public function rules()
     {
         return array(
+
+            array('username, password, email', 'required', 'on' => 'register'),
+            array('email', 'email', 'on' => 'register'),
+            array('username, email', 'unique', 'on' => 'register'),
+            array('username, password', 'length', 'min' => 5, 'max' => 20, 'on' => 'register'),
+            
             array('username, password, email', 'required'),
             array('email', 'email'),
             array('username, email', 'unique'),

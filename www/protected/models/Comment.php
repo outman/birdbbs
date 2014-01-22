@@ -27,6 +27,10 @@ class Comment extends Model
     public function rules()
     {
         return array(
+            array('postId, content', 'required', 'on' => 'post'),
+            array('postId', 'numerical', 'integerOnly' => true, 'on' => 'post'),
+            array('postId', 'length', 'max' => 10, 'on' => 'post'),
+
             array('postId, userId, content', 'required'),
             array('postId, userId, createTime, updateTime', 'length', 'max'=>10),
             array('id, postId, userId', 'safe', 'on'=>'search'),
