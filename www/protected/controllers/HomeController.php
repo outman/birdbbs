@@ -295,10 +295,13 @@ class HomeController extends FrontController
             throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         }
 
+        $model->setScenario('update');
+
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            if ($model->validate()) {
-                
+            if ($model->save()) {
+                Yii::app()->user->setFlash(":notice", Yii::t('zh_CN', 'OPTS_SUCCESS'));
+                $this->redirect($this->createUrl('home/info'));
             }
         }
 

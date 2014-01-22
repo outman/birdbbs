@@ -64,7 +64,14 @@ class User extends Model
             array('email', 'email', 'on' => 'register'),
             array('username, email', 'unique', 'on' => 'register'),
             array('username, password', 'length', 'min' => 5, 'max' => 20, 'on' => 'register'),
-            
+                
+            array('qq', 'length', 'max' => 12, 'min' => 6, 'on' => 'update'),
+            array('qq', 'numerical', 'integerOnly' => true),
+            array('location', 'length', 'max' => 32, 'min' => 2, 'on' => 'update'),
+            array('flag, intro', 'length', 'max' => 128, 'on' => 'update'),
+            array('siteUrl', 'length', 'max' => 512, 'on' => 'update'),
+            array('siteUrl', 'url', 'on' => 'update'),
+
             array('username, password, email', 'required'),
             array('email', 'email'),
             array('username, email', 'unique'),

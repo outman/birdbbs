@@ -14,7 +14,7 @@
                         'role' => 'form',
                     ),
                 )); ?>
-                
+
                 <div class="form-group">
                     <?php echo $form->label($model, 'username', array('class' => 'col-sm-2 control-label')); ?>
                     <div class="col-sm-3">
@@ -73,6 +73,14 @@
                         <input type="submit" class="btn btn-primary" value="修改">
                     </div>
                 </div>
+
+                <?php if (Yii::app()->user->hasFlash(":notice")): ?>
+                <div class="alert alert-warning alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <?php echo CHtml::encode(Yii::app()->user->getFlash(":notice")); ?>
+                </div>
+                <?php endif; ?>
+                
                 <?php $this->endWidget(); ?>
             </div>
         </div>
