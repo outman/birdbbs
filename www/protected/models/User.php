@@ -75,6 +75,7 @@ class User extends Model
             array('password', 'required', 'on' => 'password'),
             array('password', 'length', 'min' => 5, 'max' => 20, 'on' => 'password'),
 
+            array('id, username, email', 'safe', 'on' => 'search'),
         );
     }
 
