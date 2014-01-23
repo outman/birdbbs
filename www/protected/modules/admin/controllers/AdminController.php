@@ -2,7 +2,6 @@
 
 class AdminController extends BackendController
 {
-
     /**
      * [filters description]
      * @return [type] [description]
@@ -81,9 +80,6 @@ class AdminController extends BackendController
     {
         $model=$this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if(isset($_POST['Admin']))
         {
             $model->attributes=$_POST['Admin'];
@@ -103,11 +99,20 @@ class AdminController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->loadModel($id)->delete();
+        $criteria = new CDbCriteria;
+        $criteria->order = 'id ASC';
 
-        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if(!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        $admin = Admin::model()->find($criteria);
+        if ($admin && $admin->id == $id) {
+            throw new CHttpException(403, Yii::t('zh_CN', 'HTTP_STATUS_403_ADMIN_DEL'));
+        }
+
+        else {
+            $this->loadModel($id)->delete();
+            if(!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));    
+        }
+        
     }
 
     /**

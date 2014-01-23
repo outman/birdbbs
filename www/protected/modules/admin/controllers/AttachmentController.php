@@ -42,9 +42,13 @@ class AttachmentController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->loadModel($id)->delete();
+        $model = $this->loadModel($id);
+        $file = dirname(Yii::app()->basePath) . '/' . $model->path;
 
-        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        if (file_exists($file) && is_file($file)) {
+            @unlink($file);
+        }
+        $model->delete();
         if(!isset($_GET['ajax']))
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }

@@ -1,4 +1,5 @@
 <?php
+$formater = new CFormatter;
 $dataProvider = $model->search();
 $data = $dataProvider->getData();
 $page = $dataProvider->getPagination();
@@ -46,7 +47,7 @@ $page = $dataProvider->getPagination();
             <tr>
                 <td><?php echo CHtml::encode($v->id); ?></td>
                 <td><?php echo CHtml::encode($v->name); ?></td>
-                <td><?php echo CHtml::encode($v->size); ?></td>
+                <td><?php echo CHtml::encode($formater->size($v->size)); ?></td>
                 <td><?php echo CHtml::encode($v->mime); ?></td>
                 <td style="text-align: center;">
                     <div class="btn-group">

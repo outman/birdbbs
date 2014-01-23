@@ -19,7 +19,8 @@ return array(
 
     'HTTP_STATUS_404' => '该记录不存在或已删除.',
     'HTTP_STATUS_403' => '您无权操作该项，请联系管理员.',
-
+    'HTTP_STATUS_403_ADMIN_DEL' => '创始人用户，不能删除.',
+    
     'UPLOAD_FAILED' => '文件上传失败.',
     'UPLOAD_TYPE' => '文件类型只允许 PNG、JPEG、JPG、GIF.',
 

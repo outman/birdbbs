@@ -60,20 +60,22 @@ class User extends Model
     {
         return array(
 
-            array('username, password, email', 'required', 'on' => 'register'),
-            array('email', 'email', 'on' => 'register'),
-            array('username, email', 'unique', 'on' => 'register'),
-            array('username, password', 'length', 'min' => 5, 'max' => 20, 'on' => 'register'),
+            array('username, password, email', 'required', 'on' => 'register, insert'),
+            array('email', 'email', 'on' => 'register, insert'),
+            array('username, email', 'unique', 'on' => 'register, insert'),
+            array('username, password', 'length', 'min' => 5, 'max' => 20, 'on' => 'register, insert'),
                 
-            array('qq', 'length', 'max' => 12, 'min' => 6, 'on' => 'update'),
+            array('qq', 'length', 'max' => 12, 'min' => 6, 'on' => 'update, insert'),
             array('qq', 'numerical', 'integerOnly' => true),
-            array('location', 'length', 'max' => 32, 'min' => 2, 'on' => 'update'),
-            array('flag, intro', 'length', 'max' => 128, 'on' => 'update'),
-            array('siteUrl', 'length', 'max' => 512, 'on' => 'update'),
-            array('siteUrl', 'url', 'on' => 'update'),
+            array('location', 'length', 'max' => 32, 'min' => 2, 'on' => 'update, insert'),
+            array('flag, intro', 'length', 'max' => 128, 'on' => 'update, insert'),
+            array('siteUrl', 'length', 'max' => 512, 'on' => 'update, insert'),
+            array('siteUrl', 'url', 'on' => 'update, insert'),
 
             array('password', 'required', 'on' => 'password'),
             array('password', 'length', 'min' => 5, 'max' => 20, 'on' => 'password'),
+
+            array('status', 'in', 'range' => array(self::STATUS_NORMAL, self::STATUS_FROZEN), 'on' => 'update'),
 
             array('id, username, email', 'safe', 'on' => 'search'),
         );

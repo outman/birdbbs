@@ -54,6 +54,14 @@ class DefaultController extends BackendController
             
             $model->attributes = $_POST['AdminForm'];
             if ($model->validate() && $model->login()) {
+
+                $uid = Yii::app()->user->id;
+                Admin::model()->updateByPk($uid, array(
+                    'loginIp' => Yii::app()->request->userHostAddress,
+                    'updateTime' => time(),
+                ),
+                'id = :id', array(':id' => $uid));
+
                 $this->redirect(array("default/index"));
             }
         }
