@@ -120,4 +120,11 @@ class Util {
         }
         return $url;
     }
+
+    public static function randmd5()
+    {
+        $str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,;:!?.$/*-+&@_+;./*&?$-!,';
+        $str = str_shuffle($str);
+        return md5(substr($str, 8, 16) . microtime(true));
+    }
 }

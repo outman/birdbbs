@@ -33,6 +33,7 @@
             </div>
             <div class="panel-footer">
                 <a href="<?php echo $this->createUrl("home/index") ?>">> 返回首页</a>
+                <a class="pull-right" href="<?php echo $this->createUrl("forget/index") ?>">忘记密码？</a>
             </div>
         </div>
     </div>
