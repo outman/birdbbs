@@ -1,8 +1,39 @@
 #BirdBBS
 
->Online demo [http://bbs.buxiangshuo.cn](http://bbs.buxiangshuo.cn) ，based on [YII framework 1.1.14](http://www.yiiframework.com). 
+> PHP Simple BBS V2EX(like)
 
-> PHP Simple BBS like V2EX
+##Install
+> Beta version no install script, but you can install it manually
+1. git clone project to your system
+2. config your root (birdbbs/www/) dir in the webserver config file
+3. load all *.sql (birdbbs/www/protected/data/) file to mysql server
+4. replace your infomation in main.php (birdbbs/www/protected/config/main.php) file 
+5. replace your infomation in params.php (birdbbs/www/protected/config/params.php)
+
+```
+server {
+        set $htdocs /Users/outman/Repositories/birdbbs/www;
+        listen 80;
+        server_name dev.birdbbs.com;
+        location / {
+            root $htdocs;
+            autoindex on;
+            index index.php index.html;
+    
+           if (!-e $request_filename){
+                rewrite (.*) /index.php?r=$1;
+           }
+       }
+       location ~ \.php$ {
+           include fastcgi_params;
+           fastcgi_index index.php;
+           fastcgi_pass  127.0.0.1:9000;
+           fastcgi_param SCRIPT_FILENAME $htdocs$fastcgi_script_name;
+           fastcgi_param PATH_INFO $fastcgi_script_name;
+       }
+}
+```
+>Online demo [http://bbs.buxiangshuo.cn](http://bbs.buxiangshuo.cn) ，based on [YII framework 1.1.14](http://www.yiiframework.com). 
 
 ##Requirements
 - MySQL 5.5
@@ -25,10 +56,3 @@
 
 ##License
 >MIT
-
-
-
-
-
-
-
