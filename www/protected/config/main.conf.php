@@ -11,6 +11,7 @@ return array(
         'application.models.*',
         'application.components.*',
         'application.components.widget.*',
+        'ext.mail.*',
     ),
 
     'modules'=>array(

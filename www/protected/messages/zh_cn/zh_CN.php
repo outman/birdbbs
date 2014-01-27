@@ -32,4 +32,10 @@ return array(
     'FORGET_PASSWORD_USER_UNEXISTS' => '该邮箱不存在，请您检查输入邮箱.',
     'FORGET_PASSWORD_RESENT_FAILED' => '找回密码失败，请您仔细检查邮箱.',
     'FORGET_PASSWORD_RESENT_SUCCESS' => '重置密码链接已经发送到您的邮箱，请您注意查收.',
+    'FORGET_PASSWORD_TOKEN_EXPIRED' => '找回密码链接失效，请重新找回密码.',
+    'FORGET_PASSWORD_TOKEN_INVALID' => '找回密码验证失败，请仔细查看您输入的地址.',
+    'FORGET_PASSWORD_LENGTH_INVALID' => '密码长度必须为5-20个字符.',
+    'FORGET_PASSWORD_OPT_FAILED' => '找回密码操作失败，请重试.',
+    'FORGET_PASSWORD_OPT_SUCCESS' => '找回密码操作成功，请重新登录.',
+    'FORGET_PASSWORD_MAIL' => '密码找回邮件',
 );

@@ -1,8 +1,9 @@
-<?php return array(
+<?php 
+return array(
     'adminEmail'=>'xbugs@qq.com',
     'mail' => array(
-        'noreply' => 'noreply@buxiangshuo.cn',
-        'smtp' => 'smtp.exmail.qq.com',
-        'password' => '',
+        'noreply' => 'xxx@xxx.com', // 用户名
+        'smtp' => 'smtp.exmail.qq.com', // 邮件服务器smtp地址
+        'password' => 'xxxxxxxxxxxx', // 用户密码
     ),
 );

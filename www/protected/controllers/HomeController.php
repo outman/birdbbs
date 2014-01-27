@@ -134,6 +134,7 @@ class HomeController extends FrontController
             if ($model->validate()) {
                 $model->password = CPasswordHelper::hashPassword($model->password);
                 if ($model->save(false)) {
+                    Yii::app()->user->setFlash(':notice', Yii::t('zh_CN', 'OPTS_SUCCESS'));
                     $this->redirect($this->createUrl("home/login"));
                 }
             }

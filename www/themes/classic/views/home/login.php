@@ -30,6 +30,12 @@
                     <input type="submit" value="登录" class="btn btn-primary">
                 </div>
                 <?php $this->endWidget(); ?>
+
+                <?php if (Yii::app()->user->hasFlash(':notice')): ?>
+                <div class="alert alert-warning small">
+                    <?php echo CHtml::encode(Yii::app()->user->getFlash(':notice')); ?>
+                </div>
+                <?php endif; ?>
             </div>
             <div class="panel-footer">
                 <a href="<?php echo $this->createUrl("home/index") ?>">> 返回首页</a>
