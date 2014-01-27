@@ -4,10 +4,15 @@
 
 ##Install
 > Beta version no install script, but you can install it manually
+
 1. git clone project to your system
+
 2. config your root (birdbbs/www/) dir in the webserver config file
+
 3. load all *.sql (birdbbs/www/protected/data/) file to mysql server
+
 4. replace your infomation in main.php (birdbbs/www/protected/config/main.php) file 
+
 5. replace your infomation in params.php (birdbbs/www/protected/config/params.php)
 
 ```
@@ -33,7 +38,8 @@ server {
        }
 }
 ```
->Online demo [http://bbs.buxiangshuo.cn](http://bbs.buxiangshuo.cn) ，based on [YII framework 1.1.14](http://www.yiiframework.com). 
+##Online demo
+> [http://bbs.buxiangshuo.cn](http://bbs.buxiangshuo.cn) ，based on [YII framework 1.1.14](http://www.yiiframework.com). 
 
 ##Requirements
 - MySQL 5.5
