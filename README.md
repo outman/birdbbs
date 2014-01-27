@@ -1,6 +1,11 @@
 #BirdBBS
 
-> PHP Simple BBS V2EX(like)
+> PHP Simple BBS V2EX(like), based on [YII framework 1.1.14](http://www.yiiframework.com). 
+
+##Requirements
+- MySQL 5.5
+- PHP 5.3
+- YII Framework1.1.14's requirements
 
 ##Install
 > Beta version no install script, but you can install it manually
@@ -39,12 +44,7 @@ server {
 }
 ```
 ##Online demo
-> [http://bbs.buxiangshuo.cn](http://bbs.buxiangshuo.cn) ，based on [YII framework 1.1.14](http://www.yiiframework.com). 
-
-##Requirements
-- MySQL 5.5
-- PHP 5.3
-- YII Framework1.1.14's requirements
+> [http://bbs.buxiangshuo.cn](http://bbs.buxiangshuo.cn)
 
 ##Contact Us & Commercial Service
 >pochonlee@gmail.com
