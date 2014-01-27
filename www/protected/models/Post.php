@@ -123,7 +123,7 @@ class Post extends Model
         
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
-            'sort' => array('defaultOrder' => 'id desc'),
+            'sort' => array('defaultOrder' => 'sort desc, id desc'),
             'pagination' => array('pageSize' => 20,)
         ));
     }

@@ -41,7 +41,7 @@ $page = $dataProvider->getPagination();
                 <th style="width: 140px;"><?php echo $model->getAttributeLabel("nodeId"); ?></th>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("status"); ?></th>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("createTime"); ?></th>
-                <th style="width: 60px;"></th>
+                <th style="width: 120px;"></th>
             </tr>
             <?php  if ($data): ?>
             <?php  foreach ($data as $v): ?>
@@ -54,6 +54,7 @@ $page = $dataProvider->getPagination();
                 <td><?php echo CHtml::encode(Util::timeElapsedStr($v->createTime)); ?></td>
                 <td style="text-align: center;">
                     <div class="btn-group">
+                        <a class="btn btn-xs btn-info" href="javascript:;" group="up" rel="<?php echo $v->id; ?>"><?php if ($v->sort > 0): ?>取消<?php else: ?>置顶<?php endif; ?></a>
                         <a class="btn btn-xs btn-danger" href="<?php echo $this->createUrl("post/delete", array("id"=>$v->id)) ?>">删除</a>
                     </div>
                 </td>
@@ -71,3 +72,34 @@ $page = $dataProvider->getPagination();
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$(function(){
+    $('a[group="up"]').on('click', function(){
+        var _this = this;
+        $.ajax({
+            url: <?php echo json_encode($this->createUrl("post/up")); ?>,
+            type: 'POST',
+            data: {id: $(this).attr('rel'), YII_CSRF_TOKEN: <?php echo json_encode(Yii::app()->request->csrfToken); ?>},
+            dataType: 'json'
+        })
+        .done(function(resp){
+            var opts = [];
+            opts[1] = "取消";
+            opts[2] = "置顶";
+
+            if (resp.code == 200) {
+                $(_this).text(opts[resp.opts]);
+            }
+            else {
+                alert("操作失败，请检查.");
+            }
+
+            return false;
+        })
+        .error(function(resp){
+            alert("错误：" + resp);
+            return false;
+        });
+    });
+});
+</script>

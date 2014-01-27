@@ -78,4 +78,40 @@ class PostController extends BackendController
             throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         return $model;
     }
+
+    /**
+     * 帖子置顶
+     * @return [type] [description]
+     */
+    public function actionUp() {
+
+        $ret = array(
+            'code' => 201,
+            'opts' => 1,
+        );
+        
+        if (Yii::app()->request->isAjaxRequest) {
+
+            $id = (int) Yii::app()->request->getPost('id');
+            $model = Post::model()->findByPk($id);
+            if (!empty($model)) {
+
+
+                if ($model->sort > 0) {
+                    $ret['opts'] = 2;
+                    $model->sort = 0;
+                }
+                else {
+                    $model->sort = time();
+                }
+
+                if ($model->save()) {
+                    $ret['code'] = 200;
+                }
+            }
+        }
+
+        echo json_encode($ret);
+        Yii::app()->end();
+    }
 }
