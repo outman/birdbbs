@@ -1,9 +1,6 @@
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- ----------------------------
---  Table structure for `bbs_admin`
--- ----------------------------
 DROP TABLE IF EXISTS `bbs_admin`;
 CREATE TABLE `bbs_admin` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -17,9 +14,6 @@ CREATE TABLE `bbs_admin` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `bbs_attachment`
--- ----------------------------
 DROP TABLE IF EXISTS `bbs_attachment`;
 CREATE TABLE `bbs_attachment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -35,9 +29,6 @@ CREATE TABLE `bbs_attachment` (
   KEY `parentId_table` (`parentId`,`table`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `bbs_comment`
--- ----------------------------
 DROP TABLE IF EXISTS `bbs_comment`;
 CREATE TABLE `bbs_comment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -50,9 +41,6 @@ CREATE TABLE `bbs_comment` (
   KEY `postid` (`postId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `bbs_log`
--- ----------------------------
 DROP TABLE IF EXISTS `bbs_log`;
 CREATE TABLE `bbs_log` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -64,9 +52,6 @@ CREATE TABLE `bbs_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `bbs_node`
--- ----------------------------
 DROP TABLE IF EXISTS `bbs_node`;
 CREATE TABLE `bbs_node` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -78,9 +63,6 @@ CREATE TABLE `bbs_node` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `bbs_outlink`
--- ----------------------------
 DROP TABLE IF EXISTS `bbs_outlink`;
 CREATE TABLE `bbs_outlink` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -93,9 +75,6 @@ CREATE TABLE `bbs_outlink` (
   KEY `sort` (`sort`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `bbs_post`
--- ----------------------------
 DROP TABLE IF EXISTS `bbs_post`;
 CREATE TABLE `bbs_post` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -116,9 +95,6 @@ CREATE TABLE `bbs_post` (
   KEY `createTime` (`createTime`)
 ) ENGINE=InnoDB CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `bbs_user`
--- ----------------------------
 DROP TABLE IF EXISTS `bbs_user`;
 CREATE TABLE `bbs_user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -138,5 +114,16 @@ CREATE TABLE `bbs_user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `bbs_forget`;
+CREATE TABLE `bbs_forget` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(128) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `expire` int(10) unsigned NOT NULL,
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `createTime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
