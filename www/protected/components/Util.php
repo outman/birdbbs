@@ -127,4 +127,20 @@ class Util {
         $str = str_shuffle($str);
         return md5(substr($str, 8, 16) . microtime(true));
     }
+
+    public static function config($key = null)
+    {
+        $conf = array();
+        $config = Config::model()->cache(3600)->findAll();
+        if ($config) foreach ($config as $v) {
+            $conf[$v->key] = $v->value;
+        }
+
+        if ($key !== null) {
+            return isset($conf[$key]) ? $conf[$key] : "";
+        }
+        
+        return $conf;
+    }
+
 }

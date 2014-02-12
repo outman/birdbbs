@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo Yii::app()->request->baseUrl; ?>/">不想说</a>
+            <a class="navbar-brand" href="<?php echo Yii::app()->request->baseUrl; ?>/"><?php echo CHtml::encode(Util::config('site_title')); ?></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -21,6 +21,7 @@
                 <li<?php if ($id == "attachment"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/attachment/admin") ?>">文件管理</a></li>
                 <li<?php if ($id == "outlink"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/outlink/admin") ?>">友情链接</a></li>
                 <li<?php if ($id == "admin"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/admin/admin") ?>">管理员</a></li>
+                <li<?php if ($id == "config"): ?> class="active"<?php endif; ?>><a href="<?php echo Yii::app()->createUrl("admin/config/admin") ?>">系统设置</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
                 <li class="active"><a href="javascript:;"><?php echo CHtml::encode(Yii::app()->user->name); ?></a></li>

@@ -4,6 +4,7 @@ class ErrorController extends BackendController {
 
     public function init()
     {
+        parent::init();
         $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_ERROR');
     }
     

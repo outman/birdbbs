@@ -4,7 +4,7 @@ class PostController extends BackendController
 {
     public $defaultAction = "admin";
     public function init() {
-
+        parent::init();
         $this->pageTitle = Yii::t('zh_CN', 'PAGE_TITLE_POST_ADMIN');
     }
     /**

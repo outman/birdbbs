@@ -124,6 +124,13 @@ CREATE TABLE `bbs_forget` (
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `createTime` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `bbs_config`;
+CREATE TABLE `bbs_config` (
+  `key` varchar(64) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -18,6 +18,7 @@ return array(
     'PAGE_TITLE_POST_ADMIN' => '帖子管理',
     'PAGE_TITLE_USER' => '用户管理',
     'PAGE_TITLE_FORGET' => '找回密码',
+    'PAGE_TITLE_CONFIG' => '系统设置',
 
     'HTTP_STATUS_404' => '该记录不存在或已删除.',
     'HTTP_STATUS_403' => '您无权操作该项，请联系管理员.',
