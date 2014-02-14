@@ -4,7 +4,7 @@ class SideHotPostWidget extends CWidget {
 
     public function run()
     {
-        $hours24ago = time() - 3600;
+        $hours24ago = time() - 24*3600;
 
         $criteria = new CDbCriteria;
         $criteria->select = "id, title";

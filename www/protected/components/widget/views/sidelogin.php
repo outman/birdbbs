@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        不想说网
+        <?php echo Util::config('site_title'); ?>
     </div>
     <div class="panel-body">
         <span>什么都不想说，就当我没来过.</span>
