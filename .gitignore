@@ -1,5 +1,5 @@
 .DS_Store
-www/protected/config/main.php
+www/protected/config/config.php
 www/assets/
 www/upload/*
 !www/upload/index.html
