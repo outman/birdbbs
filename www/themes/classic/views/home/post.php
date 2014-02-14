@@ -55,5 +55,10 @@
         <?php $this->widget("SideHotPostWidget"); ?>
     </div>
 </div>
+<script type="text/javascript">
+var REQ_CSRF_TOKEN = <?php echo json_encode(array(
+    Yii::app()->request->csrfTokenName => Yii::app()->request->csrfToken,
+)); ?>
+</script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/ke/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/public/js/editor.js"></script>

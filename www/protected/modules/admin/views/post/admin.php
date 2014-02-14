@@ -79,7 +79,7 @@ $(function(){
         $.ajax({
             url: <?php echo json_encode($this->createUrl("post/up")); ?>,
             type: 'POST',
-            data: {id: $(this).attr('rel'), YII_CSRF_TOKEN: <?php echo json_encode(Yii::app()->request->csrfToken); ?>},
+            data: {id: $(this).attr('rel'), <?php echo Yii::app()->request->csrfTokenName, ': ', json_encode(Yii::app()->request->csrfToken); ?>},
             dataType: 'json'
         })
         .done(function(resp){

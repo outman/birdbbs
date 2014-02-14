@@ -139,6 +139,7 @@ $p->options = array('URI.AllowedSchemes'=>array(
 <script type="text/javascript">
 $(function(){
     var comment;
+    var UPLOAD_CSRF_TOKEN = <?php echo json_encode(Yii::app()->request->csrfToken); ?>;
     KindEditor.ready(function(K) {
         comment = K.create('#Comment_content', {
             formatUploadUrl: false,
@@ -149,7 +150,10 @@ $(function(){
                 'forecolor', 'hilitecolor', 'bold', 'underline', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
                 'insertunorderedlist', '|', 'image', 'link', 'code'
             ],
-            cssData: 'body { font-size: 14px; }'
+            cssData: 'body { font-size: 14px; }',
+            extraFileUploadParams: {
+                <?php echo Yii::app()->request->csrfTokenName ?>: UPLOAD_CSRF_TOKEN
+            }
         });
     });
     $('a[group="reply"]').on('click', function(){
