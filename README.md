@@ -8,18 +8,52 @@
 - YII Framework1.1.14's requirements
 
 ##Install
-> Beta version no install script, but you can install it manually
+> auto install
 
 1. git clone project to your system
 
-2. config your root (birdbbs/www/) dir in the webserver config file
+2. config your web server , web root dir is `birdbbs/www/`
 
-3. load all *.sql (birdbbs/www/protected/data/) file to mysql server
+3. type  `http://www.yourname.com/install.php` in browser to install
 
-4. replace your infomation in main.php (birdbbs/www/protected/config/main.php) file 
+4. login to ADMIN panel http://www.yourname.com/index.php?r=admin/default config your system
 
-5. replace your infomation in params.php (birdbbs/www/protected/config/params.php)
+> manually
 
+1. git clone project to your system
+
+2. config your web server , web root dir is `birdbbs/www/`
+
+3. load all *.sql (`birdbbs/www/protected/data/`) file to mysql server. (notice table prefix)
+
+4. make file config.php to dir `birdbbs/www/protected/config/config.php`
+
+5. login to ADMIN panel http://www.yourname.com/index.php?r=admin/default config your system
+
+
+config.php example
+```
+$CONF = array();
+$CONF['db'] = array(
+    'connectionString' => 'mysql:host=127.0.0.1;dbname=birdbbs;port=3306',
+    'emulatePrepare' => true,
+    'username' => 'root',
+    'password' => 'admin',
+    'charset' => 'utf8',
+    'tablePrefix' => 'bbs_',
+    'schemaCachingDuration' => 3600
+);
+$CONF['params'] = array(
+    'adminEmail'=>'xbugs@qq.com',
+    'mail' => array(
+    'noreply' => 'noreply@buxiangshuo.cn',
+    'smtp' => 'smtp.exmail.qq.com',
+    'password' => 'test',
+));
+
+```
+
+nginx example
 ```
 server {
         set $htdocs /Users/outman/Repositories/birdbbs/www;
@@ -56,9 +90,9 @@ server {
 >[http://git.oschina.net/outman/birdbbs](http://git.oschina.net/outman/birdbbs)
 
 ##Screen Snapshot
-
-![系统截图](doc/images/3.png)
-![系统截图](doc/images/7.png)
+![系统安装](doc/images/8.png)
+![系统前台](doc/images/3.png)
+![系统后台](doc/images/7.png)
 
 ##License
 >MIT
