@@ -1,7 +1,14 @@
 <?php
+$config = __DIR__ . '/config.php';
+if (!file_exists($config)) {
+    header("Location: install.php");
+    exit();
+}
+require $config;
+
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name'=>'不想说',
+    'name'=>'BIRDBBS',
     'theme' => 'classic',
     'language' => 'zh_cn',
     'preload'=>array('log'),
@@ -41,15 +48,7 @@ return array(
         //     ),
         //     'showScriptName' => false,
         // ),
-        'db'=>array(
-            'connectionString' => 'mysql:host=127.0.0.1;dbname=birdbbs',
-            'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => 'admin',
-            'charset' => 'utf8',
-            'tablePrefix' => 'bbs_',
-            'schemaCachingDuration' => 3600,
-        ),
+        'db'=>$conf['db'],
         'cache' => array(
             'class' => 'system.caching.CFileCache',
         ),
@@ -66,5 +65,5 @@ return array(
             ),
         ),
     ),
-    'params' => require(__DIR__ . '/params.php'),
+    'params' => $conf['params'],
 );

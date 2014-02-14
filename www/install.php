@@ -27,7 +27,7 @@ foreach ($need_module as $v) {
 if (isset($_POST['install']) && !empty($_POST)) {
 
     $default = array(
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => 3306,
         'prefix' => 'bird_',
     );
@@ -96,8 +96,7 @@ if (isset($_POST['install']) && !empty($_POST)) {
                 $pdo->exec(str_replace('bbs_', $prefix, $v) . ';');
             }
 
-            require_once dirname(__DIR__) . '/framework/utils/CPasswordHelper.php';
-            $hash = CPasswordHelper::hashPassword($_POST['adminpwd']);
+            $hash = hash_password($_POST['adminpwd']);
             $time = time();
 
             $admin_sql = "insert into {$prefix}admin (email, password, createTime) values ('%s', '%s', '%d')";
@@ -107,27 +106,27 @@ if (isset($_POST['install']) && !empty($_POST)) {
             if ($affected) {
                 
                 $conf  = '<?php' . "\n";
-                $conf .= '$conf = array();' . "\n" ;
-                $conf .= '$conf[\'db\'] = array(' . "\n";
-                $conf .= "'connectionString' => 'mysql:host={$host};dbname={$_POST['dbname']}';port={$port}" . "\n";
-                $conf .= "'emulatePrepare' => true" . "\n";
-                $conf .= "'username' => '{$_POST['username']}'" . "\n";
-                $conf .= "'password' => '{$_POST['password']}'" . "\n";
-                $conf .= "'charset' => 'utf8'" . "\n";
-                $conf .= "'tablePrefix' => '{$prefix}'" . "\n";
-                $conf .= "'schemaCachingDuration' => 3600" . "\n";
+                $conf .= '$CONF = array();' . "\n" ;
+                $conf .= '$CONF[\'db\'] = array(' . "\n";
+                $conf .= "    'connectionString' => 'mysql:host={$host};dbname={$_POST['dbname']};port={$port}'," . "\n";
+                $conf .= "    'emulatePrepare' => true," . "\n";
+                $conf .= "    'username' => '{$_POST['username']}'," . "\n";
+                $conf .= "    'password' => '{$_POST['password']}'," . "\n";
+                $conf .= "    'charset' => 'utf8'," . "\n";
+                $conf .= "    'tablePrefix' => '{$prefix}'," . "\n";
+                $conf .= "    'schemaCachingDuration' => 3600" . "\n";
                 $conf .= ');' . "\n";
-                $conf .= '$conf[\'params\'] = array(' . "\n";
-                $conf .= "'adminEmail'=>'{$_POST['email']}'," . "\n";
-                $conf .= "'mail' => array(" . "\n";
-                $conf .= "'noreply' => '{$_POST['smtpemail']}'," . "\n";
-                $conf .= "'smtp' => '{$_POST['smtp']}'," . "\n";
-                $conf .= "'password' => '{$_POST['smtppwd']}'," . "\n";
-                $conf .= ");" . "\n";
+                $conf .= '$CONF[\'params\'] = array(' . "\n";
+                $conf .= "    'adminEmail'=>'{$_POST['email']}'," . "\n";
+                $conf .= "    'mail' => array(" . "\n";
+                $conf .= "    'noreply' => '{$_POST['smtpemail']}'," . "\n";
+                $conf .= "    'smtp' => '{$_POST['smtp']}'," . "\n";
+                $conf .= "    'password' => '{$_POST['smtppwd']}'," . "\n";
+                $conf .= "));" . "\n";
                 
                 $status = file_put_contents(__DIR__ . '/protected/config/config.php', $conf);
                 if ($status) {
-                    file_put_contents(install_lock_file, '');
+                    file_put_contents($install_lock_file, '');
                     exit('INSTALL SUCCESS. ADMIN PANEL is /admin');
                 }
             }
@@ -137,6 +136,150 @@ if (isset($_POST['install']) && !empty($_POST)) {
         exit($e->getMessage());
     }
 }
+
+/**
+ * [gen_random_bytes description]
+ * @param  [type]  $length                  [description]
+ * @param  boolean $cryptographicallyStrong [description]
+ * @return [type]                           [description]
+ */
+function gen_random_bytes($length,$cryptographicallyStrong=true)
+{
+    $bytes='';
+    if(function_exists('openssl_random_pseudo_bytes'))
+    {
+        $bytes=openssl_random_pseudo_bytes($length,$strong);
+        if(ex_strlen($bytes)>=$length && ($strong || !$cryptographicallyStrong))
+            return ex_substr($bytes,0,$length);
+    }
+
+    if(function_exists('mcrypt_create_iv') &&
+        ($bytes=mcrypt_create_iv($length, MCRYPT_DEV_URANDOM))!==false &&
+        ex_strlen($bytes)>=$length)
+    {
+        return ex_substr($bytes,0,$length);
+    }
+
+    if(($file=@fopen('/dev/urandom','rb'))!==false &&
+        ($bytes=@fread($file,$length))!==false &&
+        (fclose($file) || true) &&
+        ex_strlen($bytes)>=$length)
+    {
+        return ex_substr($bytes,0,$length);
+    }
+
+    $i=0;
+    while(ex_strlen($bytes)<$length &&
+        ($byte=gen_session_random_block())!==false &&
+        ++$i<3)
+    {
+        $bytes.=$byte;
+    }
+    if(ex_strlen($bytes)>=$length)
+        return ex_substr($bytes,0,$length);
+
+    if ($cryptographicallyStrong)
+        return false;
+
+    while(ex_strlen($bytes)<$length)
+        $bytes.=gen_pseudo_random_block();
+    return ex_substr($bytes,0,$length);
+}
+
+/**
+ * [gen_pseudo_random_block description]
+ * @return [type] [description]
+ */
+function gen_pseudo_random_block()
+{
+    $bytes='';
+
+    if (function_exists('openssl_random_pseudo_bytes')
+        && ($bytes=openssl_random_pseudo_bytes(512))!==false
+        && ex_strlen($bytes)>=512)
+    {
+        return ex_substr($bytes,0,512);
+    }
+
+    for($i=0;$i<32;++$i)
+        $bytes.=pack('S',mt_rand(0,0xffff));
+
+    // On UNIX and UNIX-like operating systems the numerical values in `ps`, `uptime` and `iostat`
+    // ought to be fairly unpredictable. Gather the non-zero digits from those.
+    foreach(array('ps','uptime','iostat') as $command) {
+        @exec($command,$commandResult,$retVal);
+        if(is_array($commandResult) && !empty($commandResult) && $retVal==0)
+            $bytes.=preg_replace('/[^1-9]/','',implode('',$commandResult));
+    }
+
+    // Gather the current time's microsecond part. Note: this is only a source of entropy on
+    // the first call! If multiple calls are made, the entropy is only as much as the
+    // randomness in the time between calls.
+    $bytes.=ex_substr(microtime(),2,6);
+
+    // Concatenate everything gathered, mix it with sha512. hash() is part of PHP core and
+    // enabled by default but it can be disabled at compile time but we ignore that possibility here.
+    return hash('sha512',$bytes,true);
+}
+
+function gen_session_random_block()
+{
+    ini_set('session.entropy_length',20);
+    if(ini_get('session.entropy_length')!=20)
+        return false;
+
+    // These calls are (supposed to be, according to PHP manual) safe even if
+    // there is already an active session for the calling script.
+    @session_start();
+    @session_regenerate_id();
+
+    $bytes=session_id();
+    if(!$bytes)
+        return false;
+
+    // $bytes has 20 bytes of entropy but the session manager converts the binary
+    // random bytes into something readable. We have to convert that back.
+    // SHA-1 should do it without losing entropy.
+    return sha1($bytes,true);
+}
+
+/**
+ * [strlen description]
+ * @param  [type] $string [description]
+ * @return [type]         [description]
+ */
+function ex_strlen($string) {
+    return mb_strlen($string,'8bit');
+}
+
+/**
+ * [ex_substr description]
+ * @param  [type] $string [description]
+ * @param  [type] $start  [description]
+ * @param  [type] $length [description]
+ * @return [type]         [description]
+ */
+function ex_substr($string,$start,$length) {
+    return mb_substr($string,$start,$length,'8bit');
+}
+
+/**
+ * [hash_password description]
+ * @param  [type] $password [description]
+ * @return [type]           [description]
+ */
+function hash_password($password) {
+
+    $length = 22;
+    if(($randomBytes=gen_random_bytes($length+2,true))!==false)
+        $random = strtr(ex_substr(base64_encode($randomBytes),0,$length),array('+'=>'_','/'=>'~'));
+    else 
+        exit("ERROR: Generate salt failed.");
+
+    $salt = sprintf('$2a$%02d$',13).strtr($random,array('_'=>'.','~'=>'/'));
+    return crypt($password,$salt);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
