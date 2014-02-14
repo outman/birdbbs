@@ -22,6 +22,11 @@ return array(
     ),
 
     'modules'=>array(
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'admin',
+            'ipFilters'=>array('127.0.0.1','::1'),
+        ),
         'admin',
     ),
 
@@ -48,7 +53,7 @@ return array(
         //     ),
         //     'showScriptName' => false,
         // ),
-        'db'=>$conf['db'],
+        'db'=>$CONF['db'],
         'cache' => array(
             'class' => 'system.caching.CFileCache',
         ),
@@ -65,5 +70,5 @@ return array(
             ),
         ),
     ),
-    'params' => $conf['params'],
+    'params' => $CONF['params'],
 );
