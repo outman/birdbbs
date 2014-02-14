@@ -15,11 +15,6 @@ return array(
     ),
 
     'modules'=>array(
-        'gii'=>array(
-            'class'=>'system.gii.GiiModule',
-            'password'=>'admin',
-            'ipFilters'=>array('127.0.0.1','::1'),
-        ),
         'admin',
     ),
 
@@ -29,21 +24,23 @@ return array(
         'request' => array(
             'enableCsrfValidation'=>true,
             'enableCookieValidation'=>true,
+            'csrfTokenName' => 'BIRDBBS_CSRF_TOKEN',
         ),
 
         'user'=>array(
             'allowAutoLogin'=>true,
             'loginUrl' => array('home/login'),
         ),
-        'urlManager'=>array(
-            'urlFormat'=>'path',
-            'rules'=>array(
-                // '<controller:\w+>/<id:\d+>'=>'<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-            ),
-            'showScriptName' => false,
-        ),
+        // url rewirte
+        // 'urlManager'=>array(
+        //     'urlFormat'=>'path',
+        //     'rules'=>array(
+        //         // '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+        //         '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+        //         '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+        //     ),
+        //     'showScriptName' => false,
+        // ),
         'db'=>array(
             'connectionString' => 'mysql:host=127.0.0.1;dbname=birdbbs',
             'emulatePrepare' => true,
