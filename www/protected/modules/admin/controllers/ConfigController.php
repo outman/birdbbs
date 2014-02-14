@@ -56,6 +56,7 @@ class ConfigController extends BackendController
             }
             
             Yii::app()->user->setFlash(':notice', Yii::t('zh_CN', 'OPTS_SUCCESS'));
+            Yii::app()->db->schema->refresh();
             $this->redirect($this->createUrl('admin'));
         }
 
