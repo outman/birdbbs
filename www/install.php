@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $install_lock_file = __DIR__ . '/protected/data/install.lock';
 
 if (file_exists($install_lock_file)) {
