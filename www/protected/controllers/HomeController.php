@@ -154,7 +154,7 @@ class HomeController extends FrontController
         
         $userId = (int) Yii::app()->user->id;
         $post = Post::model()->findByPk($id);
-        if (empty($post)) {
+        if (empty($post) || $post->status != Post::STATUS_NORMAL) {
             throw new CHttpException(404, Yii::t('zh_CN', 'HTTP_STATUS_404'));
         }
 
