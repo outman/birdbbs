@@ -17,3 +17,7 @@ div.dashed {
 div.avatar {
     height: 48px; width: 48px;background: #999;
 }
+
+article {
+    overflow: auto;
+}
