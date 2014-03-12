@@ -4,7 +4,7 @@
 
 ##Requirements
 - MySQL 5.5
-- PHP 5.3
+- PHP 5.3 （with fileinfo module default）
 - YII Framework1.1.14's requirements
 
 ##Install
