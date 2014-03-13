@@ -50,7 +50,7 @@ $page = $dataProvider->getPagination();
                         <span class="light"><?php echo $v->hits; ?>次浏览</span>
                     </div>
                     <div class="col-md-1">
-                        <span class="badge"><?php echo $v->reply; ?></span>
+                        <span class="badge"><?php echo $v->reply; ?> <?php if ($v->sort): ?>T<?php endif; ?></span>
                     </div>
                 </div>
                 <div class="dashed"></div>
