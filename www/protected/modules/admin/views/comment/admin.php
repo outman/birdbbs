@@ -36,8 +36,8 @@ $page = $dataProvider->getPagination();
             <table class="table table-bordered table-condensed">
             <tr>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("id"); ?></th>
-                <th style="width: 200px;"><?php echo $model->getAttributeLabel("userId"); ?></th>
-                <th><?php echo $model->getAttributeLabel("postId"); ?></th>
+                <th style="width: 200px;">ID/<?php echo $model->getAttributeLabel("userId"); ?></th>
+                <th><?php echo $model->getAttributeLabel("content"); ?></th>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("createTime"); ?></th>
                 <th style="width: 60px;"></th>
             </tr>
@@ -45,8 +45,14 @@ $page = $dataProvider->getPagination();
             <?php  foreach ($data as $v): ?>
             <tr>
                 <td><?php echo CHtml::encode($v->id); ?></td>
-                <td><?php echo CHtml::encode(isset($v->user->username)?$v->user->username:$v->userId); ?></td>
-                <td><?php echo CHtml::encode($v->content); ?></td>
+                <td><?php echo $v->userId, '/', CHtml::encode(isset($v->user->username)?$v->user->username:$v->userId); ?></td>
+                <td>
+                    <?php if (isset($v->post->id)): ?>
+                    <a target="_blank" href="<?php echo $this->createUrl("/home/view", array("id"=>$v->post->id, '#'=>'go' . $v->id)); ?>"><?php echo CHtml::encode($v->content); ?></a>
+                    <?php else: ?>
+                    <?php echo CHtml::encode($v->content); ?>
+                    <?php endif; ?>
+                </td>
                 <td><?php echo CHtml::encode($v->createTime?Util::timeElapsedStr($v->createTime):"-"); ?></td>
                 <td style="text-align: center;">
                     <div class="btn-group">

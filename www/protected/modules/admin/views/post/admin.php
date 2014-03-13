@@ -36,7 +36,7 @@ $page = $dataProvider->getPagination();
             <table class="table table-bordered table-condensed">
             <tr>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("id"); ?></th>
-                <th style="width: 180px;"><?php echo $model->getAttributeLabel("userId"); ?></th>
+                <th style="width: 180px;">ID/<?php echo $model->getAttributeLabel("userId"); ?></th>
                 <th><?php echo $model->getAttributeLabel("title"); ?></th>
                 <th style="width: 140px;"><?php echo $model->getAttributeLabel("nodeId"); ?></th>
                 <th style="width: 80px;"><?php echo $model->getAttributeLabel("status"); ?></th>
@@ -47,8 +47,8 @@ $page = $dataProvider->getPagination();
             <?php  foreach ($data as $v): ?>
             <tr>
                 <td><?php echo CHtml::encode($v->id); ?></td>
-                <td><?php echo CHtml::encode(isset($v->user->username)?$v->user->username:$v->userId); ?></td>
-                <td><?php echo CHtml::encode($v->title); ?></td>
+                <td><?php echo $v->userId, '/', CHtml::encode(isset($v->user->username)?$v->user->username:$v->userId); ?></td>
+                <td><a target="_blank" href="<?php echo $this->createUrl("/home/view", array("id"=>$v->id)); ?>"><?php echo CHtml::encode($v->title); ?></a></td>
                 <td><?php echo CHtml::encode(isset($v->node->name)?$v->node->name:$v->nodeId); ?></td>
                 <td><?php echo CHtml::encode($v->displayStatus()); ?></td>
                 <td><?php echo CHtml::encode(Util::timeElapsedStr($v->createTime)); ?></td>

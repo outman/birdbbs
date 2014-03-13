@@ -71,6 +71,7 @@ $p->options = array('URI.AllowedSchemes'=>array(
                         <?php if ($v->userId == $userId): ?>
                         <a class="badge" href="<?php echo $this->createUrl("home/delcomment", array("id"=>$v->id)); ?>">删除</a>
                         <?php endif; ?>
+                        <a name="go<?php echo $v->id; ?>"></a>
                         <div class="dashed"></div>
                         <article>
                             <?php echo $p->purify($v->content); ?>

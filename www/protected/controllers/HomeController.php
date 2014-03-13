@@ -166,7 +166,7 @@ class HomeController extends FrontController
                 $post->lastUpdateUserId = $userId;
                 $post->reply += 1;
                 $post->save();
-                $this->redirect(array('home/view', 'id' => $post->id));
+                $this->redirect(array('home/view', 'id' => $post->id, '#'=>'go'.$comment->id));
             }
         }
 
