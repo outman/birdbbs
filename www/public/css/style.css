@@ -4,6 +4,9 @@ body {
 a { 
     outline: none;
 }
+a:focus { 
+    outline: none;
+}
 a.light, span.light {
     color: #ccc;
     font-size: 12px;

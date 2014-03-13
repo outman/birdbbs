@@ -2,3 +2,9 @@ body {
     font-family: 'Microsoft Yahei', 'Helvetica Neue', 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti;
     padding-top: 64px;
 }
+a { 
+    outline: none;
+}
+a:focus { 
+    outline: none;
+}
