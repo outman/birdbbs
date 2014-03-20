@@ -19,11 +19,13 @@ return array(
     'PAGE_TITLE_USER' => '用户管理',
     'PAGE_TITLE_FORGET' => '找回密码',
     'PAGE_TITLE_CONFIG' => '系统设置',
+    'PAGE_TITLE_BIND_REGISTER' => '用户绑定注册',
 
     'HTTP_STATUS_404' => '该记录不存在或已删除.',
     'HTTP_STATUS_403' => '您无权操作该项，请联系管理员.',
     'HTTP_STATUS_403_ADMIN_DEL' => '创始人用户，不能删除.',
-    
+    'HTTP_STATUS_PLATFORM_403' => '授权操作失败，请重新再试.',
+
     'UPLOAD_FAILED' => '文件上传失败.',
     'UPLOAD_TYPE' => '文件类型只允许 PNG、JPEG、JPG、GIF.',
 

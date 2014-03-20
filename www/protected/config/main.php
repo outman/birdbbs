@@ -19,6 +19,7 @@ return array(
         'application.components.*',
         'application.components.widget.*',
         'ext.mail.*',
+        'application.vendor.sina.*',
     ),
 
     'modules'=>array(
