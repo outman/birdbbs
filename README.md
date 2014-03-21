@@ -46,10 +46,19 @@ $CONF['db'] = array(
 $CONF['params'] = array(
     'adminEmail'=>'xbugs@qq.com',
     'mail' => array(
-    'noreply' => 'noreply@buxiangshuo.cn',
-    'smtp' => 'smtp.exmail.qq.com',
-    'password' => 'test',
-));
+      'noreply' => 'noreply@buxiangshuo.cn',
+      'smtp' => 'smtp.exmail.qq.com',
+      'password' => 'test',
+    ),
+    // third part login bind
+    // sina weibo.com, remove comment
+    // 'sina' => array(
+    //    'appKey' => 'xxxxxxx',
+    //    'appSecrectKey' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    //    'callbackUrl' => 'http://yourhoust.com/index.php?r=callback/sina',
+    //),
+
+);
 
 ```
 
