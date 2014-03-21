@@ -133,4 +133,14 @@ CREATE TABLE `bbs_config` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
+DROP TABLE IF EXISTS `bbs_platform`;
+CREATE TABLE `bbs_platform` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `platform` varchar(16) NOT NULL,
+  `uniqid` varchar(32) NOT NULL,
+  `userId` int(10) NOT NULL,
+  `createTime` int(10) unsigned DEFAULT '0',
+  `updateTime` int(10) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET FOREIGN_KEY_CHECKS = 1;
