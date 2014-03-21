@@ -29,8 +29,8 @@ $p->options = array('URI.AllowedSchemes'=>array(
                     </div>
                     <div class="col-md-1">
                         <a href="<?php echo $this->createUrl('home/index', array('Post[userId]'=>$model->userId)); ?>" class="pull-right">
-                            <?php if ($model->user->email): ?>
-                            <img class="img-circle" src="<?php echo Util::gavatar($model->user->email); ?>" alt="<?php echo CHtml::encode($model->user->username); ?>">
+                            <?php if (isset($model->user->avatar) && (($avatar = $model->user->avatar) || ($avatar = Util::gavatar($model->user->email)))): ?>
+                            <img class="img-circle" src="<?php echo $avatar; ?>" alt="<?php echo CHtml::encode($model->user->username); ?>">
                             <?php else: ?>
                             <div class="avatar"></div>
                             <?php endif; ?>  
@@ -56,8 +56,8 @@ $p->options = array('URI.AllowedSchemes'=>array(
         <div class="row">
             <div class="col-md-1">
                 <a href="<?php echo $this->createUrl("home/index", array('Post[userId]' => $v->userId)); ?>">
-                    <?php if ($v->user->email): ?>
-                    <img class="img-circle" src="<?php echo Util::gavatar($v->user->email); ?>" alt="<?php echo CHtml::encode($v->user->username); ?>">
+                    <?php if (isset($v->user->avatar) && ($avatar = $v->user->avatar) || ($avatar = Util::gavatar($v->user->email))): ?>
+                    <img class="img-circle" src="<?php echo $avatar; ?>" alt="<?php echo CHtml::encode($v->user->username); ?>">
                     <?php else: ?>
                     <div class="avatar"></div>
                     <?php endif; ?>   

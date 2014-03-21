@@ -26,3 +26,7 @@ div.avatar {
 article {
     overflow: auto;
 }
+
+img.third-login-btn {
+    width: 160px;
+}

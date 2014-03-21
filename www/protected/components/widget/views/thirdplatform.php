@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body" style="text-align: center;">
         <?php if ($sinaLoginUrl): ?>
-        <a class="btn btn-primary" href="<?php echo $sinaLoginUrl; ?>">新浪微博登录</a>
+        <a href="<?php echo $sinaLoginUrl; ?>"><img class="third-login-btn" src="<?php echo Yii::app()->request->baseUrl; ?>/public/img/weibo_login.png" alt="新浪微博登录"></a>
         <?php endif; ?>
     </div>
 </div>

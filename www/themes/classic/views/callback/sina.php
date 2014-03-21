@@ -17,14 +17,7 @@
                     <?php echo $form->textField($user, 'username', array("class"=>'form-control', 'placeholder'=>'用户名')) ?>
                     <?php echo $form->error($user, 'username', array('class' => 'help-block')) ?>
                 </div>
-                <div class="form-group">
-                    <?php echo $form->passwordField($user, 'password', array("class"=>'form-control', 'placeholder'=>'密码', 'value' => '')) ?>
-                    <?php echo $form->error($user, 'password', array('class' => 'help-block')) ?>
-                </div>
-                <div class="form-group">
-                    <?php echo $form->textField($user, 'email', array("class"=>'form-control', 'placeholder'=>'邮箱')) ?>
-                    <?php echo $form->error($user, 'email', array('class' => 'help-block')) ?>
-                </div>
+                
                 <div class="form-group">
                     <input type="submit" value="绑定" class="btn btn-primary">
                 </div>

@@ -23,6 +23,8 @@ class User extends Model
     const STATUS_NORMAL = 1;
     const STATUS_FROZEN = 2;
 
+    const UNDEFINED_PWD = '_PWD';
+    
     /**
      * @return string the associated database table name
      */

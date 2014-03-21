@@ -9,7 +9,8 @@ class SideUserWidget extends CWidget {
         $criteria->compare('userId' , $uid);
 
         $model = User::model()->findByPk($uid);
-        $user['avatar'] = Util::gavatar($model->email, 36);
+
+        $user['avatar'] = $model->avatar ? $model->avatar : Util::gavatar($model->email, 36);
         $user['post'] = Post::model()->count($criteria);
         $user['comment'] = Comment::model()->count($criteria);
 

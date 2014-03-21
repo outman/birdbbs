@@ -8,6 +8,7 @@
         </ul>
         <div class="panel panel-default">
             <div class="panel-body">
+                <?php if ($model->password !== User::UNDEFINED_PWD): ?>
                 <?php $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'user-form',
                     'htmlOptions' => array(
@@ -56,6 +57,11 @@
                 <?php endif; ?>
                 
                 <?php $this->endWidget(); ?>
+                <?php else: ?>
+                <div class="alert alert-warning alert-dismissable">
+                    第三方绑定帐号，无需登录密码.
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

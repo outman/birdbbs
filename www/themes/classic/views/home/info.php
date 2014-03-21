@@ -24,7 +24,8 @@
                         </div>
                     </div>
                 </div>
-
+                
+                <?php if (User::UNDEFINED_PWD !== $model->password): ?>
                 <div class="form-group">
                     <?php echo $form->label($model, 'email', array('class' => 'col-sm-2 control-label')); ?>
                     <div class="col-sm-3">
@@ -33,7 +34,8 @@
                         </div>
                     </div>
                 </div>
-                
+                <?php endif; ?>
+
                 <div class="form-group">
                     <?php echo $form->label($model, 'qq', array('class' => 'col-sm-2 control-label')); ?>
                     <div class="col-sm-3">
