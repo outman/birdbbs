@@ -122,6 +122,9 @@ $p->options = array('URI.AllowedSchemes'=>array(
     <div class="col-md-3">
     <?php if (Yii::app()->user->isGuest): ?>
     <?php $this->widget("SideLoginWidget"); ?>
+    <?php if (isset(Yii::app()->params['sina']) || isset(Yii::app()->params['qq'])): ?>
+        <?php $this->widget("ThirdPlatformWidget"); ?>
+    <?php endif; ?>
     <?php else: ?>
     <div class="panel panel-default">
         <div class="panel-body">
