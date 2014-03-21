@@ -32,6 +32,7 @@ class CallbackController extends FrontController {
                     }
 
                     if ($platform->save()) {
+                        unset(Yii::app()->session['__SINA_UID']);
                         Yii::app()->user->setFlash(':notice', Yii::t('zh_CN', 'OPTS_SUCCESS'));
                         $this->redirect($this->createUrl("home/login"));
                     }

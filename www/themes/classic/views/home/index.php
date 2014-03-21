@@ -19,7 +19,7 @@ $page = $dataProvider->getPagination();
                     <div class="col-md-1">
                         <a href="<?php echo $this->createUrl("home/index", array("Post[userId]"=>$v->userId)); ?>">
                         <?php if (isset($v->user->email)): ?>
-                            <img src="<?php echo Util::gavatar($v->user->email);?>" alt="<?php echo CHtml::encode($v->user->username); ?>">
+                            <img class="img-circle" src="<?php echo Util::gavatar($v->user->email);?>" alt="<?php echo echo CHtml::encode($v->user->username); ?>">
                         <?php else: ?>
                             <div class="avatar"></div>
                         <?php endif; ?>
