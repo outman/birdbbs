@@ -109,7 +109,7 @@ class Util {
 
     public static function gavatar($email, $s = 48, $d = 'mm', $r = 'g', $img = false, $attr = array())
     {
-        $url = 'http://www.gravatar.com/avatar/';
+        $url = 'http://gravatar.duoshuo.com/avatar/';
         $url .= md5(strtolower(trim($email)));
         $url .= "?s={$s}&d={$d}&r={$r}";
         if ($img) {
