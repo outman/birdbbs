@@ -1,9 +1,9 @@
 <?php echo "<?php\n"; ?>
 
-class DefaultController extends BackendController
+class DefaultController extends Controller
 {
-    public function actionIndex()
-    {
-        $this->render('index');
-    }
+	public function actionIndex()
+	{
+		$this->render('index');
+	}
 }
