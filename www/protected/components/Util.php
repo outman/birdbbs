@@ -114,7 +114,7 @@ class Util {
         $url .= "?s={$s}&d={$d}&r={$r}";
         if ($img) {
             $url = '<img src="' . $url . '"';
-            foreach ( $atts as $key => $val )
+            foreach ( $attr as $key => $val )
                 $url .= ' ' . $key . '="' . $val . '"';
             $url .= ' />';
         }
