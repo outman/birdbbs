@@ -1,3 +1,5 @@
+# Deprecated
+
 #BirdBBS
  
 > PHP Simple BBS V2EX(like), based on [YII framework 1.1.17](http://www.yiiframework.com). 
